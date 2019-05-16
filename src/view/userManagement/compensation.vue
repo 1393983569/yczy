@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Button type="primary" v-show="!showState" style="margin-bottom: 10px" @click="addProfessionState">编辑经验类型</Button>
+    <Button type="primary" v-show="!showState" style="margin-bottom: 10px" @click="addProfessionState">添加薪资类型</Button>
     <div v-show="showState">
-      <Input v-model="profession" :disabled="disabled" placeholder="请输入编辑经验类型" style="width: 300px; margin-bottom: 10px"/>
+      <Input v-model="profession" :disabled="disabled" placeholder="请输入工资" style="width: 300px; margin-bottom: 10px"/>
       <Button type="primary" style="margin-bottom: 10px" :loading="loading" @click="addPreserve">保存</Button>
       <Button style="margin-bottom: 10px" @click="cancel">取消</Button>
     </div>
@@ -11,6 +11,15 @@
     </div>
     <Table :columns="columns" :data="data"></Table>
     <Page style="margin-top: 10px" :total="pageTotal * 10" @on-change="pageChange" />
+    <Modal
+      v-model="modalEdit"
+      title="修改">
+      <Input v-model="valueEdit" placeholder="请输入" style="width: 300px" />
+      <div slot="footer">
+        <Button size="large" @click="cancel">取消</Button>
+        <Button type="primary" :loading="modal_loading" @click="ok">确定</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 <script>
@@ -32,19 +41,20 @@ export default ({
             return h('div', [
               h('Button', {
                 props: {
-                  type: 'error',
-                  size: 'small',
-                  loading: this.data[params.index].loading
+                  type: 'primary',
+                  size: 'small'
                 },
                 style: {
                   marginRight: '5px'
                 },
                 on: {
                   click: () => {
-                    this.deleteClick(params.row.tid, params.index)
+                    this.modalEdit = true
+                    this.valueEdit = params.row.name
+                    this.sid = params.row.sid
                   }
                 }
-              }, '删除')
+              }, '修改')
             ])
           }
         }
@@ -58,7 +68,11 @@ export default ({
       selectValue: '',
       profession: '',
       pageTotal: 1,
-      pageNum: 1
+      pageNum: 1,
+      modalEdit: false,
+      valueEdit: '',
+      sid: '',
+      modal_loading: false
     }
   },
   methods: {
@@ -71,10 +85,10 @@ export default ({
           return
         }
         this.pageTotal = res.info.pageTotal
-        res.info.data.forEach(item => {
+        res.info.forEach(item => {
           this.data.push({
-            name: item.profession,
-            tid: item.tid,
+            name: item.name,
+            sid: item.sid,
             loading: false
           })
         })
@@ -104,17 +118,10 @@ export default ({
     cancel () {
       this.showState = ''
       this.inputValue = ''
-    },
-    // 删除
-    deleteClick (value, index) {
-      this.data[index].loading = true
-      edit(value).then(res => {
-        this.data[index].loading = false
-        this.getList()
-        // this.data.splice(index, 1)
-      }).catch(err => {
-        console.log(err)
-      })
+      this.loading = false
+      this.disabled = false
+      this.modal_loading = false
+      this.modalEdit = false
     },
     // 查询
     selectData (value) {
@@ -125,6 +132,16 @@ export default ({
     pageChange (e) {
       this.pageNum = e
       this.getList()
+    },
+    ok () {
+      this.modal_loading = true
+      edit(this.sid, this.valueEdit).then(res => {
+        this.modal_loading = false
+        this.modalEdit = false
+        this.getList()
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
   mounted () {

@@ -111,5 +111,24 @@ export const getBankList = () => {
     method: 'get'
   })
 }
+/**
+ * 获取薪资类型列表
+ * @returns {*|never|AxiosPromise<any>|l.default}
+ */
+export const commonGetSalarys = () => {
+  return axios.request({
+    url: '/common/getSalarys',
+    method: 'post'
+  })
+}
 
-
+/**
+ * 获取经验类型列表
+ * @returns {*|never|AxiosPromise<any>|l.default}
+ */
+export const commonGetExperiences = () => {
+  return axios.request({
+    url: '/common/getExperiences',
+    method: 'post'
+  })
+}

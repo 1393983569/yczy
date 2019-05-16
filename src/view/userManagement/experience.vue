@@ -11,6 +11,15 @@
     </div>
     <Table :columns="columns" :data="data"></Table>
     <Page style="margin-top: 10px" :total="pageTotal * 10" @on-change="pageChange" />
+    <Modal
+      v-model="modalEdit"
+      title="修改">
+      <Input v-model="valueEdit" placeholder="请输入" style="width: 300px" />
+      <div slot="footer">
+        <Button size="large" @click="cancel">取消</Button>
+        <Button type="primary" :loading="modal_loading" @click="ok">确定</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 <script>
@@ -41,7 +50,9 @@ export default ({
                 },
                 on: {
                   click: () => {
-                    this.deleteClick(params.row.tid, params.index)
+                    this.modalEdit = true
+                    this.valueEdit = params.row.name
+                    this.eid = params.row.eid
                   }
                 }
               }, '编辑')
@@ -58,7 +69,11 @@ export default ({
       selectValue: '',
       profession: '',
       pageTotal: 1,
-      pageNum: 1
+      pageNum: 1,
+      modalEdit: false,
+      valueEdit: '',
+      eid: '',
+      modal_loading: false
     }
   },
   methods: {
@@ -71,10 +86,10 @@ export default ({
           return
         }
         this.pageTotal = res.info.pageTotal
-        res.info.data.forEach(item => {
+        res.info.forEach(item => {
           this.data.push({
-            name: item.profession,
-            tid: item.tid,
+            name: item.name,
+            eid: item.eid,
             loading: false
           })
         })
@@ -104,6 +119,10 @@ export default ({
     cancel () {
       this.showState = ''
       this.inputValue = ''
+      this.loading = false
+      this.disabled = false
+      this.modal_loading = false
+      this.modalEdit = false
     },
     // 删除
     deleteClick (value, index) {
@@ -124,6 +143,16 @@ export default ({
     pageChange (e) {
       this.pageNum = e
       this.getList()
+    },
+    ok () {
+      this.modal_loading = true
+      edit(this.eid, this.valueEdit).then(res => {
+        this.modal_loading = false
+        this.modalEdit = false
+        this.getList()
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
   mounted () {

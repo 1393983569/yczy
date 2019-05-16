@@ -1,19 +1,20 @@
 <template>
   <Form ref="loginForm" :model="form" :rules="rules">
+    <div style="margin-bottom: 10px; font-size: 20px">欢迎登录！</div>
     <FormItem prop="userName">
-      <!--<Input v-model="form.userName" placeholder="请输入用户名">-->
-        <!--<span slot="prepend">-->
-          <!--<Icon :size="16" type="person"></Icon>-->
-        <!--</span>-->
-      <!--</Input>-->
-      <Select v-model="form.userName">
-        <Option v-for="(item, index) in modelSelect" :key="index" :value="item">{{item}}</Option>
-      </Select>
+      <Input v-model="form.userName" placeholder="请输入用户名">
+        <span slot="prepend">
+          <Icon type="ios-contact" :size="16"/>
+        </span>
+      </Input>
+      <!--<Select v-model="form.userName">-->
+        <!--<Option v-for="(item, index) in modelSelect" :key="index" :value="item">{{item}}</Option>-->
+      <!--</Select>-->
     </FormItem>
     <FormItem prop="password">
       <Input type="password" v-model="form.password" placeholder="请输入密码">
         <span slot="prepend">
-          <Icon :size="14" type="locked"></Icon>
+          <Icon type="md-lock" :size="16"/>
         </span>
       </Input>
     </FormItem>

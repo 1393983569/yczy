@@ -41,6 +41,7 @@ class HttpRequest {
       // 判断响应状态
       if (res.data.status + '' === '2') {
         setToken('')
+        window.location.reload()
         return Promise.reject(res.data.info)
       }
       if (res.data.status + '' === '500') {

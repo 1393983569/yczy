@@ -98,26 +98,36 @@ export default [
         },
         component: () => import('@/view/userManagement/jurisdiction/adminJurisdiction.vue')
       },
-      // {
-      //   path: 'addProfession',
-      //   name: 'addProfession',
-      //   meta: {
-      //     // access: ['工种管理'],
-      //     icon: '_leibieguanli',
-      //     title: '工种管理'
-      //   },
-      //   component: () => import('@/view/userManagement/addProfession.vue')
-      // },
-      // {
-      //   path: 'experience',
-      //   name: 'experience',
-      //   meta: {
-      //     // access: ['经验类型'],
-      //     icon: '_leibieguanli',
-      //     title: '经验类型'
-      //   },
-      //   component: () => import('@/view/userManagement/experience.vue')
-      // }
+      {
+        path: 'equipmentManagement',
+        name: 'equipmentManagement',
+        meta: {
+          // access: ['shebeiguanli'],
+          icon: '_gongren',
+          title: '设备管理'
+        },
+        component: () => import('@/view/userManagement/equipmentManagement/equipmentManagement.vue')
+      },
+      {
+        path: 'compensation',
+        name: 'compensation',
+        meta: {
+          // access: ['工种管理'],
+          icon: '_leibieguanli',
+          title: '薪资管理'
+        },
+        component: () => import('@/view/userManagement/compensation.vue')
+      },
+      {
+        path: 'experience',
+        name: 'experience',
+        meta: {
+          // access: ['经验类型'],
+          icon: '_leibieguanli',
+          title: '经验类型'
+        },
+        component: () => import('@/view/userManagement/experience.vue')
+      }
     ]
   },
   {
@@ -232,16 +242,26 @@ export default [
         },
         component: () => import('@/view/constructionOrganizationAdmin/workerAdmin/workerAdmin.vue')
       },
-      // {
-      //   path: 'paySheet',
-      //   name: 'paySheet',
-      //   meta: {
-      //     access: ['提交工资单'],
-      //     icon: '_gongzibiaoshenhe',
-      //     title: '提交工资单'
-      //   },
-      //   component: () => import('@/view/constructionOrganizationAdmin/paySheet/paySheet.vue')
-      // }
+      {
+        path: 'paySheet',
+        name: 'paySheet',
+        meta: {
+          // access: ['提交工资单'],
+          icon: '_gongzibiaoshenhe',
+          title: '考勤设置'
+        },
+        component: () => import('@/view/constructionOrganizationAdmin/attendanceAdmin/attendanceAdmin.vue')
+      },
+      {
+        path: 'positionAdmin',
+        name: 'positionAdmin',
+        meta: {
+          // access: ['shebeiguanli'],
+          icon: '_gongren',
+          title: '职位发布'
+        },
+        component: () => import('@/view/constructionOrganizationAdmin/positionAdmin/positionAdmin.vue')
+      }
       // {
       //   path: 'wageQuery',
       //   name: 'wageQuery',

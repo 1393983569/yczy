@@ -1,10 +1,10 @@
 import axios from '@/libs/api.request'
 
 // 编辑经验类型修改
-export const edit = (data) => {
+export const edit = (eid, name) => {
   let params = new URLSearchParams()
-  params.append('eid', data.eid)
-  params.append('name', data.name)
+  params.append('eid', eid)
+  params.append('name', name)
   return axios.request({
     url: '/common/editExperience',
     data: params,
@@ -21,9 +21,9 @@ export const get = (data) => {
 }
 
 // 获取经验类型添加
-export const add = (data) => {
+export const add = (name) => {
   let params = new URLSearchParams()
-  params.append('name', data.name)
+  params.append('name', name)
   return axios.request({
     url: '/common/addExperience',
     data: params,

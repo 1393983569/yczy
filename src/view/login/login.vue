@@ -3,19 +3,25 @@
   </style>
   <template>
     <div class="login" @keydown.enter="handleLogin">
+      <div class="logo-location">
+        <img src="http://qiniu-hr-landa.lz-cc.com/1557826353278.png" style="height: 85px; margin-right: 15px">
+        <div class="logo-img">
+          <img src="http://qiniu-hr-landa.lz-cc.com/1557826400942.png">
+          <img src="http://qiniu-hr-landa.lz-cc.com/1557826268246.png">
+        </div>
+      </div>
+
       <div class="login-con">
-        <Card icon="log-in" title="欢迎登录" :bordered="false">
-          <div class="form-con">
-            <login-form @on-success-valid="handleSubmit"></login-form>
-            <div class="register">
-              <div class="register-cut">
-                <span @click="checkIn" style="color: #eb6c27">工地入住</span>
-                <!--| <span @click="passwordForget">忘记密码?</span>-->
-              </div>
-            </div>
-            <p class="login-tip">请输入户名和密码</p>
+        <div class="form-con">
+          <div class="form-coment">
+            <login-form @on-success-valid="handleSubmit" style="margin-top: 16px; width: 250px"></login-form>
           </div>
-        </Card>
+          <div class="register">
+            <div class="register-cut">
+              <span @click="checkIn" style="color: #eb6c27">工地入住</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </template>

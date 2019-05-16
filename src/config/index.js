@@ -2,7 +2,7 @@ export default {
   /**
    * @description 配置显示在浏览器标签的title
    */
-  title: '定西市农民工权益保障系统',
+  title: '云创智鹰',
   /**
    * @description token在Cookie中存储的天数，默认1天
    */
@@ -26,7 +26,7 @@ export default {
    */
   baseUrl: {
     // dev: 'http://servicezhgd.yungoux.com/admin',
-    dev: 'http://gongdi-service.lz-cc.com:8081/admin',
+    dev: 'http://gongdi-service.lz-cc.com:8088/admin',
     // pro: 'http://servicezhgd.yungoux.com/admin',
     pro: 'http://gongdi-service.lz-cc.com/admin',
     // 七牛旧图片上传组件回显地址

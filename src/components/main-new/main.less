@@ -1,13 +1,15 @@
 .main{
   .ivu-layout-sider{
-    background-color: #4c85ff;
+    background-color: #348bda;
   }
   .ivu-menu-dark{
-   background-color: #4c85ff;
+   background-color: #348bda;
   }
   // .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title{
   //  color: #03A9F4;
   // }
+
+
   // .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened{
   //  background: #2f7bb9;
   // }
@@ -20,6 +22,9 @@
   // .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title{
   //  color: #2f7bb9;
   // }
+  .ivu-layout{
+    background-color: #ffffff;
+  }
   .header-color{
     background: linear-gradient(#b6f3ff, #4c85ff)
   }
@@ -44,7 +49,10 @@
   }
   .main-content-con{
     height: ~"calc(100% - 60px)";
-    overflow: hidden;
+    background-color: #ffffff;
+    width: 980px;
+    margin: 0 auto;
+    overflow: auto;
   }
   .tag-nav-wrapper{
     padding: 0;
@@ -57,13 +65,13 @@
     overflow: auto;
     background-color: #fff;
   }
-  .left-sider{
-    // 隐藏遮盖滚动条
-    .ivu-layout-sider-children{
-      overflow-y: scroll;
-      margin-right: -20px;
-    }
-  }
+  //.left-sider{
+  //   隐藏遮盖滚动条
+  //  .ivu-layout-sider-children{
+  //    overflow-y: scroll;
+  //    margin-right: -20px;
+  //  }
+  //}
 }
 .ivu-menu-item > i{
   margin-right: 12px !important;
@@ -72,7 +80,7 @@
   margin-right: 8px !important;
 }
 .collased-menu-dropdown{
-  width: 100%;
+  display: inline-block;
   margin: 0;
   line-height: normal;
   padding: 7px 0 6px 16px;
@@ -83,7 +91,7 @@
   cursor: pointer;
   transition: background 0.2s ease-in-out;
   &:hover{
-    // background: rgba(100, 100, 100, 0.1);
+     background: rgba(100, 100, 100, 0.1);
     background: #fff;
   }
   & * {
@@ -93,10 +101,37 @@
     margin-right: 12px !important;
   }
   .ivu-menu-submenu > .ivu-menu > .ivu-menu-item > i {
+    display: inline-block;
     margin-right: 8px !important;
   }
 }
+.ivu-layout-header{
 
+}
 .ivu-select-dropdown.ivu-dropdown-transfer{
   max-height: 400px;
+}
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+  width: 2px;  /*滚动条宽度*/
+  height: 2px;  /*滚动条高度*/
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  border-radius: 10px;  /*滚动条的背景区域的圆角*/
+  background-color: rgba(193, 193, 193, 0.11);/*滚动条的背景颜色*/
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius: 1px;  /*滚动条的圆角*/
+  -webkit-box-shadow: #ffffff;
+  background-color: #c3c3c3;  /*滚动条的背景颜色*/
 }

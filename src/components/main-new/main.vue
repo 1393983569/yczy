@@ -1,34 +1,56 @@
 <template>
   <Layout style="height: 100%" class="main">
-    <Sider hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
-      <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
-        <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
-        <div class="header-color">
-          <div class="logo-con">
-            <img v-show="!collapsed" :src="maxLogo" style="height: 76px; width: 172px" key="max-logo" />
-            <img v-show="collapsed" :src="minLogo" key="min-logo" />
-          </div>
-          <!-- 显示店名 -->
-          <div class="shopName" v-show="!collapsed">
-            {{ shopName }}
-          </div>
-        </div>
+    <!--<Header hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">-->
+      <!--<side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">-->
+        <!--&lt;!&ndash; 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 &ndash;&gt;-->
+        <!--<div class="header-color">-->
+          <!--<div class="logo-con">-->
+            <!--<img v-show="!collapsed" :src="maxLogo" style="height: 76px; width: 172px" key="max-logo" />-->
+            <!--<img v-show="collapsed" :src="minLogo" key="min-logo" />-->
+          <!--</div>-->
+          <!--&lt;!&ndash; 显示店名 &ndash;&gt;-->
+          <!--<div class="shopName" v-show="!collapsed">-->
+            <!--{{ shopName }}-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</side-menu>-->
+    <!--</Header>-->
+    <div style="padding: 0 50px;height: 62px;background-color: #348bda">
+      <side-menu accordion ref="sideMenu"  :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
+        <user :user-avator="userAvator"/>
       </side-menu>
-    </Sider>
+    </div>
     <Layout>
-      <Header class="header-con" style="background-color: #FFFFFF">
-        <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
-          <!--<user :message-unread-count="unreadCount" :user-avator="userAvator"/>-->
-          <user :user-avator="userAvator"/>
-          <!--<language v-if="$config.useI18n" @on-lang-change="setLocal" style="margin-right: 10px;" :lang="local"/>-->
-          <!--<error-store v-if="$config.plugin['error-store'] && $config.plugin['error-store'].showInHeader" :has-read="hasReadErrorPage" :count="errorCount"></error-store>-->
-          <fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>
-        </header-bar>
-      </Header>
+      <!--面包屑-->
+      <!--<Header class="header-con" style="background-color: #FFFFFF">-->
+        <!--<header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">-->
+          <!--退出登录-->
+          <!--<user :user-avator="userAvator"/>-->
+          <!--<fullscreen v-model="isFullscreen" style="margin-right: 10px;"/>-->
+        <!--</header-bar>-->
+      <!--</Header>-->
+      <!--<Header hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">-->
+      <!--<Header>-->
+        <!--<side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">-->
+          <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
+          <!--<div class="header-color">-->
+          <!--<div class="logo-con">-->
+          <!--<img v-show="!collapsed" :src="maxLogo" style="height: 76px; width: 172px" key="max-logo" />-->
+          <!--<img v-show="collapsed" :src="minLogo" key="min-logo" />-->
+          <!--</div>-->
+          <!-- 显示店名 -->
+          <!--<div class="shopName" v-show="!collapsed">-->
+          <!--{{ shopName }}-->
+          <!--</div>-->
+          <!--</div>-->
+        <!--</side-menu>-->
+      <!--</Header>-->
       <Content class="main-content-con">
         <Layout class="main-layout-con">
           <div class="tag-nav-wrapper">
-            <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
+            <!--<tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>-->
+            <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
+            </header-bar>
           </div>
           <Content class="content-wrapper">
             <keep-alive :include="cacheList">
