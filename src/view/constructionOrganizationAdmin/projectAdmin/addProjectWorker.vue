@@ -5,12 +5,12 @@
       <FormItem prop="teamName" label="班组名称">
         <Input type="text" v-model="formInline.teamName" style="width: 250px" placeholder="班组名称"></Input>
       </FormItem>
-      <FormItem prop="entryTime" label="进场日期">
-        <DatePicker type="date" placeholder="进场日期" v-model="formInline.entryTime" style="width: 250px"></DatePicker>
+      <FormItem prop="entryTimeData" label="进场日期">
+        <DatePicker type="date" placeholder="进场日期" v-model="formInline.entryTimeData" style="width: 250px"></DatePicker>
       </FormItem>
-      <FormItem prop="exitTime" label="退场日期">
+      <!-- <FormItem prop="exitTime" label="退场日期">
         <DatePicker type="date" placeholder="退场日期" v-model="formInline.exitTime" style="width: 250px"></DatePicker>
-      </FormItem>
+      </FormItem> -->
       <FormItem prop="responsiblePersonName" label="责任人姓名">
         <Input type="text" v-model="formInline.responsiblePersonName" style="width: 250px" placeholder="责任人姓名"></Input>
       </FormItem>
@@ -25,19 +25,19 @@
       </FormItem>
     </Form>
     <!--进场附件-->
-    <div v-if="formInline.entryTime !== ''">
+    <div v-if="formInline.entryTimeData !== ''">
       <hr class="border-dashed"/>
       <div>
         <accessory :title="titleEntryTime" v-model="dataAccessoryEntryTime" style="display: inline-block"></accessory>
       </div>
     </div>
     <!--退场附件-->
-    <div v-if="formInline.exitTime !== ''">
+    <!-- <div v-if="formInline.exitTime !== ''">
       <hr class="border-dashed"/>
       <div>
         <accessory :title="titleExitTime" v-model="dataAccessoryExitTime" style="display: inline-block"></accessory>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -90,6 +90,7 @@ export default {
         corpCode: '',
         entryAttachments: [],
         exitAttachments: [],
+        entryTimeData: '',
       },
       ruleInline: {
         teamName: [
@@ -101,14 +102,14 @@ export default {
         responsiblePersonIDNumber: [
           { validator: identityCard, trigger: 'blur' }
         ],
-        entryTime: [
+        entryTimeData: [
           { required: true, type: 'date', message: '进场时间不能为空', trigger: 'blur' }
         ],
         exitTime: [
           { required: true, type: 'date', message: '退场时间不能为空', trigger: 'blur' }
         ]
       },
-      loading: false,
+      // loading: false,
       workerListAll: [],
       profession: [],
       dataAccessoryExitTime: [],
@@ -165,23 +166,23 @@ export default {
        }
         if (valid) {
           this.formInline.projectCorpId = this.projectCode + ''
-          if (this.formInline.entryTime) {
-            this.formInline.entryTime = new Date(this.formInline.entryTime).Format("yyyy-MM-dd")
+          if (this.formInline.entryTimeData) {
+            this.formInline.entryTime = new Date(this.formInline.entryTimeData).Format("yyyy-MM-dd")
           }
           if (this.formInline.exitTime) {
             this.formInline.exitTime = new Date(this.formInline.exitTime).Format("yyyy-MM-dd")
           }
           console.log(this.formInline)
           add(this.formInline).then(res => {
-            this.loading = false
+            // this.loading = false
             this.$emit('formState', true)
           }).catch(err => {
-            this.loading = false
+            // this.loading = false
             this.$Message.error(err)
             this.$emit('formState', false)
           })
         } else {
-          this.loading = false
+          // this.loading = false
           this.$Message.error('请完善信息')
         }
       })

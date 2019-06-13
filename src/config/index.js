@@ -30,8 +30,8 @@ export default {
     // pro: 'http://servicezhgd.yungoux.com/admin',
     pro: 'http://gongdi-service.lz-cc.com/admin',
     // 七牛旧图片上传组件回显地址
-    qiniuUrl: 'http://qiniu-gongdi.lz-cc.com/',
+    qiniuUrl: 'http://qiniu.zhiyingtec.com/',
     // 七牛新图片上传组件回显地址
-    qiniuBaseUrl: 'http://qiniu-gongdi.lz-cc.com'
+    qiniuBaseUrl: 'http://qiniu.zhiyingtec.com'
   }
 }

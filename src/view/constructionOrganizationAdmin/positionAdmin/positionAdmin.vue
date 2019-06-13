@@ -165,6 +165,7 @@
       cancel () {
         this.modal_loading = false
         this.modalAddConfig = false
+        this.$refs.equipmentManagementRef.handleReset()
       },
       submitState (e) {
         if (e) {

@@ -9,21 +9,22 @@ import { setToken, getToken } from '@/libs/util'
 export default {
   state: {
     userName: '',
-    userId: '',
+    // userId: '',
     avatorImgPath: '',
     token: getToken(),
     access: [],
     shopName: '',
     homeName: '',
     screenState: false,
-    secretKey: ''
+    secretKey: '',
+    accountId: ''
   },
   mutations: {
     setAvator (state, avatorPath) {
       state.avatorImgPath = avatorPath
     },
-    setUserId (state, id) {
-      state.userId = id
+    setAccountId (state, accountId) {
+      state.accountId = accountId
     },
     setUserName (state, name) {
       state.userName = name
@@ -92,7 +93,7 @@ export default {
           // 名称
           // commit('setUserName', data.accountTitle)
           // id
-          // commit('setUserId', data.accountId)
+          commit('setAccountId', res.msg.accountId)
           // 权限
           commit('setAccess', data)
           commit('setShopName', res.msg.accountTitle)

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
+      <editableTables :progress="editableTablesProgress" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
     </div>
   </div>
 </template>
@@ -41,11 +41,10 @@ export default({
         },
         {
           title: '项目分类',
-          key: 'category'
-        },
-        {
-          title: '项目简介',
-          key: 'description'
+          key: 'category',
+          render: (h, params) => {
+            return h('div', params.row.projectCategoryDomain ? params.row.projectCategoryDomain.name : '')
+          }
         },
         {
           title: '总承包单位统一社会信用代码',
@@ -64,19 +63,23 @@ export default({
           key: 'buildCorpCode'
         },
         {
+          title: '项目简介',
+          key: 'description'
+        },
+        {
           title: '发放金状态',
           key: 'grantState',
           render: (h, params) => {
             return h('div', params.row.grantState + '' === '0' ? '未审核' : '通过')
           }
         },
-        {
-          title: '保证金状态',
-          key: 'bondState',
-          render: (h, params) => {
-            return h('div', params.row.bondState + '' === '0' ? '未审核' : '通过')
-          }
-        },
+        // {
+        //   title: '保证金状态',
+        //   key: 'bondState',
+        //   render: (h, params) => {
+        //     return h('div', params.row.bondState + '' === '0' ? '未审核' : '通过')
+        //   }
+        // },
         {
           title: '操作',
           key: 'action',
@@ -109,34 +112,34 @@ export default({
                     })
                   }
                 }
-              }, '确认发放金'),
-              h('Button', {
-                props: {
-                  type: 'primary',
-                  size: 'small',
-                  disabled: params.row.bondState + '' === '1'
-                },
-                style: {
-                  marginTop: '5px',
-                  marginBottom: '5px'
-                },
-                on: {
-                  click: () => {
-                    this.$Modal.confirm({
-                      title: '提示',
-                      content: '确认保证金已提交？',
-                      onOk: () => {
-                        projectAdd(1, '', params.row.id).then(res => {
-                          this.$Message.success('成功')
-                          this.getList()
-                        }).catch(err => {
-                          this.$Message.error('失败')
-                        })
-                      }
-                    })
-                  }
-                }
-              }, '确认保证金')
+              }, '确认发放金')
+              // h('Button', {
+              //   props: {
+              //     type: 'primary',
+              //     size: 'small',
+              //     disabled: params.row.bondState + '' === '1'
+              //   },
+              //   style: {
+              //     marginTop: '5px',
+              //     marginBottom: '5px'
+              //   },
+              //   on: {
+              //     click: () => {
+              //       this.$Modal.confirm({
+              //         title: '提示',
+              //         content: '确认保证金已提交？',
+              //         onOk: () => {
+              //           projectAdd(1, '', params.row.id).then(res => {
+              //             this.$Message.success('成功')
+              //             this.getList()
+              //           }).catch(err => {
+              //             this.$Message.error('失败')
+              //           })
+              //         }
+              //       })
+              //     }
+              //   }
+              // }, '确认保证金')
             ])
           }
         }
@@ -147,16 +150,19 @@ export default({
       selectValue: '',
       // 分页参数
       pageNum: 1,
-      pageTotal: 1
+      pageTotal: 1,
       // 需求参数
+      editableTablesProgress: true
     }
   },
   methods: {
     // 分页查询管理员
     getList () {
       this.dataList = []
+      this.editableTablesProgress = true
       projectGetPageList(this.pageNum, this.selectValue).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
           this.$Message.error(res.info)
           this.pageTotal = 1

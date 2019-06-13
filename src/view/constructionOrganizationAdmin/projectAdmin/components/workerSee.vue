@@ -1,6 +1,6 @@
 <template>
   <div>
-    <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
+    <editableTables :progress="editableTablesProgress" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
   </div>
 </template>
 <script>
@@ -51,15 +51,21 @@ export default({
       pageNum: 1,
       pageTotal: 1,
       // 需求参数
+      editableTablesProgress: true
     }
   },
   methods: {
     // 分页查询管理员
     getList (id) {
       this.dataList = []
-      if (!id) return
+      this.editableTablesProgress = true
+      if (!id) {
+        this.editableTablesProgress = false
+        return
+      }
       trainQuery(id).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
           this.$Message.error(res.info)
           this.pageTotal = 1

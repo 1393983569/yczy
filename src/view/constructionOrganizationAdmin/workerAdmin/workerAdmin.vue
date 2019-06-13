@@ -29,7 +29,7 @@
       :mask-closable='false'
       title="上传工资"
       width="900">
-      <uploadSalary ref="uploadSalaryRef" @submitState="submitStateUpload" :row="rowObj" :wId="wId + ''" ></uploadSalary>
+      <uploadSalary ref="uploadSalaryRef" @submitState="submitStateUpload" :wId="wId + ''" ></uploadSalary>
       <div slot="footer">
         <Button type="primary" :loading="loading_uploadSalaryS" @click="uploadSalarySOk" >提交</Button>
       </div>
@@ -48,13 +48,22 @@
       width="900">
       <contractSee ref="contractSeeRef" :wId="wId"></contractSee>
     </Modal>
+    <Modal
+      v-model="offShow"
+      :mask-closable='false'
+      title="退场">
+      <DatePicker type="date" v-model="offData" :options="optionsData" placeholder="请选择时间" style="width: 200px"></DatePicker>
+      <div slot="footer">
+        <Button type="primary" :loading="loading_uploadOffOk" @click="uploadOffOk" >提交</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 <script>
 // 基本模板
 import editableTables from '_c/editableTables/editableTables.vue'
 import clonedeep from 'clonedeep'
-import { workerQuery } from '@/api/constructionOrganizationAdmin/workerAdmin/workerAdmin'
+import { workerQuery, itemExit } from '@/api/constructionOrganizationAdmin/workerAdmin/workerAdmin'
 import clickImg from '_c/clickImg'
 import { aesDecrypt } from '@/libs/util'
 import { workerType } from '@/api/public'
@@ -100,11 +109,14 @@ export default({
           title: '基本信息',
           key: 'JBXX',
           render: (h, params) => {
+            let style = params.row.state ? `color: red` : `display: none`
+            let styleModification = params.row.state ?  `display: none` : `display: inline-block`
             return (
               <div>
                 <div style="cursor: pointer" >
                   <span style="color: #2D8cF0; font-weight: 700">{params.row.workerName} </span>
-                  <tooltip content="修改工人信息">
+                  <span style={style}>(已退场)</span>
+                  <tooltip content="修改工人信息" style={styleModification}>
                     <icon type="ios-create" style="font-size: 16px; color: #2D8cF0;" on-click={this.modificationWorker.bind(this, params.row)}/>
                   </tooltip>
                   <tooltip content="查看合同">
@@ -209,6 +221,7 @@ export default({
                     // 清除add状态
                     this.$refs.uploadSalaryRef.handleReset()
                     this.$refs.uploadSalaryRef.getDictionaries()
+                    this.$refs.uploadSalaryRef.getSalaryParticulars(params.row.id)
                   }
                 }
               }, '上传工资'),
@@ -228,7 +241,26 @@ export default({
                     this.$refs.checkingInRef.getList(params.row.id)
                   }
                 }
-              }, '查看考勤')
+              }, '查看考勤'),
+              h('Button', {
+                props: {
+                  type: 'error',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px',
+                  marginTop: '5px',
+                  // display: 'block'
+                },
+                on: {
+                  click: () => {
+                    this.offShow = true
+                    this.offDateObj = params.row
+                    this.loading_uploadOffOk = false
+                    this.offData = ''
+                  }
+                }
+              }, '工人退场')
             ])
           }
         }
@@ -252,7 +284,16 @@ export default({
       uploadSalaryState: false,
       loading_uploadSalaryS: false,
       checkingInState: false,
-      contractSeeState: false
+      contractSeeState: false,
+      offShow: false,
+      optionsData: {
+        disabledDate  (date) {
+          return date && date.valueOf() > Date.now()
+        }
+      },
+      offData: '',
+      loading_uploadOffOk: false,
+      offDateObj: {}
     }
   },
   methods: {
@@ -367,6 +408,35 @@ export default({
       console.log(e, id)
       this.contractSeeState = true
       this.$refs.contractSeeRef.getList(id)
+    },
+    // 参建单位退场
+    uploadOffOk () {
+      this.loading_uploadOffOk = true
+      if (this.offData) {
+        this.offDateObj.type = '0'
+        this.offDateObj.wId = this.offDateObj.id
+        this.offDateObj.date = new Date(this.offData).Format("yyyy-MM-dd hh:mm:ss")
+        delete this.offDateObj._rowKey
+        delete this.offDateObj.projectCorpTeamDomain
+        delete this.offDateObj.legalManIdCardTypeDomain
+        delete this.offDateObj.workerTypeDomain
+        console.log(this.offDateObj, '*********************************')
+        itemExit(this.offDateObj).then(res => {
+          this.loading_uploadOffOk = false
+          this.offShow = false
+          this.getList()
+          this.$Message.success('成功')
+        }).catch(err => {
+          this.loading_uploadOffOk = false
+          this.offShow = true
+          this.$Message.error(err)
+          this.offDateObj.exitTime = ''
+        })
+      } else {
+        this.loading_uploadOffOk = false
+        this.offShow = true
+        this.$Message.error('请填写时间')
+      }
     }
   },
   mounted () {

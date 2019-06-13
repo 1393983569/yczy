@@ -101,11 +101,12 @@ export const getTime = (pid, state, dealState) => {
 }
 
 // 申请时间列表
-export const payOff = (pbId, actualAmount) => {
+export const payOff = (pbId, actualAmount, thirdPayRollCode) => {
   let params = new URLSearchParams()
   params.append('id', pbId)
   // params.append('pId', pId)
   params.append('actualAmount', actualAmount)
+  params.append('thirdPayRollCode', thirdPayRollCode)
   return axios.request({
     url: 'workerSalary/edit',
     data: params,

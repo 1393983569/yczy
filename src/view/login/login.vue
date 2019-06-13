@@ -14,7 +14,7 @@
       <div class="login-con">
         <div class="form-con">
           <div class="form-coment">
-            <login-form @on-success-valid="handleSubmit" style="margin-top: 16px; width: 250px"></login-form>
+            <login-form @on-success-valid="handleSubmit" ref="loginFormRef" style="margin-top: 16px; width: 250px"></login-form>
           </div>
           <div class="register">
             <div class="register-cut">
@@ -48,11 +48,13 @@ export default {
       this.handleLogin({ userName, password }).then(res => {
         this.getUserInfo().then(res => {
           this.$Message.success('欢迎登陆')
+          this.$refs.loginFormRef.log_loading = false
           this.$router.push({
             name: 'home'
           })
         })
       }).catch(err => {
+        this.$refs.loginFormRef.log_loading = false
         this.$Message.error(err)
       })
     },

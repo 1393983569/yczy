@@ -1,18 +1,18 @@
 <template>
     <div style="height: 500px; display: flex;">
       <Form ref="formValidate" :model="formInline" :rules="ruleInline" inline>
-        <FormItem prop="lateTime" label="设置算迟到时间">
+        <FormItem prop="lateTime" label="设置迟到时间">
           <TimePicker type="time" :disabled="modificationState" v-model="formInline.lateTime" placeholder="请选择时间" style="width: 250px"></TimePicker>
         </FormItem>
-        <FormItem prop="lateTime" label="设置算旷工时间">
-          <TimePicker type="time" :disabled="modificationState" v-model="formInline.absentTime" placeholder="请选择时间" style="width: 250px"></TimePicker>
+        <FormItem prop="lateTime" label="设置早退时间">
+          <TimePicker type="time" :disabled="modificationState" v-model="formInline.leaveTime" placeholder="请选择时间" style="width: 250px"></TimePicker>
         </FormItem>
-        <FormItem prop="lateTime" label="下午早退算时间">
+        <!-- <FormItem prop="lateTime" label="下午早退算时间">
           <TimePicker type="time" :disabled="modificationState" v-model="formInline.leaveTime" placeholder="请选择时间" style="width: 250px"></TimePicker>
         </FormItem>
         <FormItem prop="lateTime" label="下午旷工算时间">
           <TimePicker type="time" :disabled="modificationState" v-model="formInline.leaveAbsetTime" placeholder="请选择时间" style="width: 250px"></TimePicker>
-        </FormItem>
+        </FormItem> -->
         <FormItem prop="type" label="打卡类型">
           <Select v-model="formInline.type" :disabled="modificationState" @on-change="changeSelectState" style="width:250px" placeholder="打卡类型">
             <Option  value="0">一天刷卡2次</Option>
@@ -55,7 +55,7 @@
         msg: "This is a message!",
         formInline: {
           lateTime: '',
-          absentTime: '',
+          leaveTime: '',
           leaveTime: '',
           leaveAbsetTime: '',
           type: '',
@@ -94,7 +94,7 @@
         this.modificationText = this.modificationState ? '修改' : '保存'
       },
       addData(data) {
-        data.pid = this.pid
+        data.accountId = this.$store.state.user.accountId
         setAdd(data).then(res => {
           this.$Message.success('成功')
         }).catch(err => {

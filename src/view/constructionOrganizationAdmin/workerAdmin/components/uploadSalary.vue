@@ -28,9 +28,10 @@
         </Input>
       </FormItem>
       <FormItem prop="payBankNameData" label="工资代发开户行名称">
-        <Select v-model="formInline.payBankNameData" style="width:250px" placeholder="工资代发开户行名称">
+        <!-- <Select v-model="formInline.payBankNameData" style="width:250px" placeholder="工资代发开户行名称">
           <Option v-for="item in bankList.info" :value="`${item.id}:${item.accountTitle}`" :key="item.id">{{ item.accountTitle }}</Option>
-        </Select>
+        </Select> -->
+        <Input type="text" v-model="formInline.payBankNameData"  style="width: 250px" placeholder="工资代发开户行名称"></Input>
       </FormItem>
       <FormItem prop="totalPayAmount" label="应发金额(元)">
         <InputNumber type="text" :min="0" v-model="formInline.totalPayAmount"  style="width: 250px" placeholder="应发金额">
@@ -55,7 +56,7 @@
 
 <script>
   import siteSelect from '_c/siteSelect/siteSelect.vue'
-  import { add } from '@/api/constructionOrganizationAdmin/workerAdmin/uploadSalary'
+  import { add, workerSalaryGetSalary } from '@/api/constructionOrganizationAdmin/workerAdmin/uploadSalary'
   import { getBankList } from '@/api/public'
   import uploadMultiple from '_c/uploadMultiple'
   import clonedeep from 'clonedeep'
@@ -172,8 +173,9 @@
           if (valid) {
             try {
               this.formInline.wId = this.wId
-              this.formInline.payBankName = this.formInline.payBankNameData.split(':')[1]
-              this.formInline.bankId = this.formInline.payBankNameData.split(':')[0]
+              // this.formInline.payBankName = this.formInline.payBankNameData.split(':')[1]
+              this.formInline.payBankName = this.formInline.payBankNameData
+              // this.formInline.bankId = this.formInline.payBankNameData.split(':')[0]
               let obj = clonedeep(this.formInline)
               add(obj).then(res => {
                 this.$Message.success('添加成功')
@@ -205,6 +207,21 @@
           this.isBackPayState = false
           delete this.ruleInline.backPayMonth
         }
+      },
+      // 查询上传工资详情
+      getSalaryParticulars (wId) {
+        workerSalaryGetSalary(wId).then(res => {
+          if (res.info !== '暂无数据') {
+            this.formInline = res.info
+            this.formInline.days = ''
+            this.formInline.workHours = ''
+            this.formInline.totalPayAmount = ''
+            this.formInline.thirdPayRollCode = ''
+            this.formInline.totalPayAmount = 0
+          }
+        }).catch(err => {
+          console.log(err)
+        })
       }
     },
     mounted () {

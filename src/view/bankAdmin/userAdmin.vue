@@ -1,14 +1,14 @@
 <template>
   <div>
-    <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
+    <editableTables :progress="editableTablesProgress" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
     <Modal
       v-model="modalPassword"
       :closable="false"
       title="修改密码">
       <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
-        <FormItem prop="accountName" label="账号">
-          <Input v-model="formInline.accountName" placeholder="输入账号" style="width: 300px" />
-        </FormItem>
+        <!--<FormItem prop="accountName" label="账号">-->
+          <!--<Input v-model="formInline.accountName" placeholder="输入账号" style="width: 300px" />-->
+        <!--</FormItem>-->
         <FormItem prop="accountPass" label="旧密码">
           <Input v-model="formInline.accountPass" placeholder="输入旧密码" style="width: 300px" />
         </FormItem>
@@ -71,6 +71,7 @@ export default({
                 on: {
                   click: () => {
                     this.modalPassword = true
+                    this.listId = params.row.id
                   }
                 }
               }, '修改密码')
@@ -91,6 +92,7 @@ export default({
       modal_loading: false,
       formInline: {
         accountName: '',
+        
         accountPass: '',
         newPass: ''
       },
@@ -104,15 +106,24 @@ export default({
         newPass: [
           { required: true, message: '密码不能为空', trigger: 'blur' }
         ]
-      }
+      },
+      editableTablesProgress: true,
+      listId: ''
+    }
+  },
+  computed: {
+    listId () {
+      return this.$store.state.user.accountId
     }
   },
   methods: {
     // 分页查询管理员
     getList () {
       this.dataList = []
-      getAdmins(this.pageNum, this.selectValue).then(res => {
+      this.editableTablesProgress = true
+      getAdmins(this.pageNum, this.selectValue, this.listId).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
           this.$Message.error(res.info)
           this.pageTotal = 1
@@ -137,7 +148,7 @@ export default({
       this.modal_loading = true
       this.$refs[name].validate((valid) => {
         if (valid) {
-          editPsw(this.formInline.accountName, this.formInline.accountPass, this.formInline.newPass).then(res => {
+          editPsw(this.listId, this.formInline.accountPass, this.formInline.newPass).then(res => {
             this.$Message.success('成功')
             this.$refs.formInline.resetFields()
             this.modalPassword = false

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
+    <editableTables :progress="editableTablesProgress" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
   </div>
 </template>
 <script>
@@ -51,16 +51,19 @@ export default({
       selectValue: '',
       // 分页参数
       pageNum: 1,
-      pageTotal: 1
+      pageTotal: 1,
       // 需求参数
+      editableTablesProgress: true
     }
   },
   methods: {
     // 分页查询管理员
     getList () {
       this.dataList = []
+      this.editableTablesProgress = true
       salaryStatistic(this.pageNum, this.selectValue).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
           this.$Message.error(res.info)
           this.pageTotal = 1

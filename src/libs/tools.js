@@ -8,6 +8,7 @@ export const forEach = (arr, fn) => {
   }
 }
 
+
 export const getCommonString = (arr1, arr2) => {
   let len = Math.min(arr1.length, arr2.length)
   let i = -1

@@ -3,12 +3,9 @@ import axios from '@/libs/api.request'
 // 管理员添加
 export const addAdmin = (data) => {
   let params = new URLSearchParams()
-  params.append('accountName', data.accountName)
-  params.append('accountPass', data.accountPass)
-  params.append('accountTitle', data.accountTitle)
-  params.append('accountPhone', data.accountPhone)
-  params.append('accountJob', data.accountJob)
-  params.append('roleId', data.roleId)
+  for (let key in data) {
+    if (data[key]) params.append(key, data[key])
+  }
   return axios.request({
     url: 'addAdmin',
     data: params,
@@ -26,6 +23,7 @@ export const getAdmins = (pageNum, accountTitle, accountJob, shopId) => {
   return axios.request({
     url: 'getAdmins',
     data: params,
+
     method: 'post'
   })
 }

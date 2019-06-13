@@ -31,3 +31,11 @@ export const upWorkerSalary = (obj) => {
     method: 'post'
   })
 }
+
+// 查询工人工资发放的相关信息
+export const workerSalaryGetSalary = (wId) => {
+  return axios.request({
+    url: `workerSalary/getSalary?wId=${wId}`,
+    method: 'get'
+  })
+}

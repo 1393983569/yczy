@@ -1,10 +1,12 @@
 <template>
   <div>
-    <Button type="primary" @click="cancelProjectInit">添加项目</Button>
+    <Button type="primary" :disabled="Boolean(dataList.length)" @click="cancelProjectInit">添加项目</Button>
     <Modal
       v-model="projectAddState"
       width="600"
-      title="实发工资">
+      title="添加项目"
+      :mask-closable="false"
+      :closable="false">
       <Form ref="formInlineProject" :model="formInlineProject" :rules="ruleInlineProject" inline>
         <FormItem prop="projectCode" label="项目编码">
           <div>
@@ -17,8 +19,44 @@
             </span>
           </div>
         </FormItem>
-        <FormItem prop="mainboardNum" label="主板编号">
-          <Input type="text" v-model="formInlineProject.mainboardNum" style="width: 250px" placeholder="主板编号"></Input>
+        <FormItem prop="supervisorName" label="监理单位负责人">
+          <Input type="text" v-model="formInlineProject.supervisorName"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="supervisorEnterprise" label="监理单位">
+          <Input type="text" v-model="formInlineProject.supervisorEnterprise"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="supervisorPhone" label="监理单位电话">
+          <Input type="text" v-model="formInlineProject.supervisorPhone"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="competentEnterprise" label="主管单位">
+          <Input type="text" v-model="formInlineProject.competentEnterprise"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="competentPhone" label="主管单位电话">
+          <Input type="text" v-model="formInlineProject.competentPhone"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="buildPhone" label="建设单位电话">
+          <Input type="text" v-model="formInlineProject.buildPhone" style="width: 250px" placeholder="主板编号"></Input>
+        </FormItem>
+        <FormItem prop="approvalEnterprise" label="项目审批单位">
+          <Input type="text" v-model="formInlineProject.approvalEnterprise"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="bond" label="保证金缴纳金额(万元)">
+          <Input type="text" v-model="formInlineProject.bond"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="privateAccount" label="农民工工资专用账户">
+          <Input type="text" v-model="formInlineProject.privateAccount"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="buildName" label="建设单位负责人">
+          <Input type="text" v-model="formInlineProject.buildName"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
         </FormItem>
       </Form>
       <div slot="footer">
@@ -27,7 +65,7 @@
       </div>
     </Modal>
     <div>
-      <editableTables :showHeader="true" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'>
+      <editableTables :progress="editableTablesProgress" :showHeader="true" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'>
       </editableTables>
     </div>
     <Modal
@@ -106,18 +144,58 @@
       width="900">
         <trainSee ref="trainSeeRef" />
     </Modal>
-    <!--<div class="lianx_css_box">-->
-      <!--&lt;!&ndash;http://qiniu-gongdi.lz-cc.com/FqG-X7XB8ICN3j7CW85-So15-8mk&ndash;&gt;-->
-      <!--&lt;!&ndash;http://qiniu-gongdi.lz-cc.com/Fm5vi8qPzsp3UApGv20XV_8HOFOP&ndash;&gt;-->
-      <!--<img src="http://qiniu-gongdi.lz-cc.com/FqG-X7XB8ICN3j7CW85-So15-8mk" class="bg_img">-->
-      <!--<img src="http://qiniu-gongdi.lz-cc.com/Fm5vi8qPzsp3UApGv20XV_8HOFOP" class="bg_img_move">-->
-    <!--</div>-->
-    <!--<div class="lianx_css_box lianx">-->
-      <!--<img src="http://qiniu-gongdi.lz-cc.com/FqG-X7XB8ICN3j7CW85-So15-8mk" class="bg_img">-->
-    <!--</div>-->
-    <!--<div class="spinner">-->
-      <!--<div class="line1"></div>-->
-    <!--</div>-->
+    <Modal
+      v-model="perfectData"
+      width="600"
+      title="完善项目信息"
+      :mask-closable="false"
+      :closable="false">
+      <Form ref="perfectDataProject" :model="perfectDataProject" :rules="ruleInlineProjectPerfect" inline>
+        <FormItem prop="supervisorName" label="监理单位负责人">
+          <Input type="text" v-model="perfectDataProject.supervisorName"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="supervisorEnterprise" label="监理单位">
+          <Input type="text" v-model="perfectDataProject.supervisorEnterprise"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="supervisorPhone" label="监理单位电话">
+          <Input type="text" v-model="perfectDataProject.supervisorPhone"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="competentEnterprise" label="主管单位">
+          <Input type="text" v-model="perfectDataProject.competentEnterprise"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="competentPhone" label="主管单位电话">
+          <Input type="text" v-model="perfectDataProject.competentPhone"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="buildPhone" label="建设单位电话">
+          <Input type="text" v-model="perfectDataProject.buildPhone" style="width: 250px" placeholder="主板编号"></Input>
+        </FormItem>
+        <FormItem prop="approvalEnterprise" label="项目审批单位">
+          <Input type="text" v-model="perfectDataProject.approvalEnterprise"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="bond" label="保证金缴纳金额(万元)">
+          <Input type="text" v-model="perfectDataProject.bond"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="privateAccount" label="农民工工资专用账户">
+          <Input type="text" v-model="perfectDataProject.privateAccount"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+        <FormItem prop="buildName" label="建设单位负责人">
+          <Input type="text" v-model="perfectDataProject.buildName"  style="width: 250px" placeholder="负责人姓名">
+          </Input>
+        </FormItem>
+      </Form>
+      <div slot="footer">
+        <Button @click="perfectDataCancel">取消</Button>
+        <Button type="primary" :loading="perfect_loading" @click="perfectDataSubmit">确定</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 <script>
@@ -169,11 +247,10 @@ export default({
         },
         {
           title: '项目分类',
-          key: 'category'
-        },
-        {
-          title: '项目简介',
-          key: 'description'
+          key: 'category',
+          render: (h, params) => {
+            return h('div', params.row.projectCategoryDomain ? params.row.projectCategoryDomain.name : '')
+          }
         },
         {
           title: '总承包单位统一社会信用代码',
@@ -190,6 +267,10 @@ export default({
         {
           title: '建设单位统一社会信用代码',
           key: 'buildCorpCode'
+        },
+        {
+          title: '项目简介',
+          key: 'description'
         },
         {
           title: '操作',
@@ -238,7 +319,23 @@ export default({
                     this.$refs.trainSeeRef.getList(params.row.projectCode)
                   }
                 }
-              }, '查看培训资料')
+              }, '查看培训资料'),
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginTop: '5px',
+                  marginBottom: '5px'
+                },
+                on: {
+                  click: () => {
+                    this.perfectData = true
+                    this.perfectDataProject = params.row
+                  }
+                }
+              }, '完善项目信息')
             ])
           }
         }
@@ -273,7 +370,30 @@ export default({
       },
       formInlineProject: {
         projectCode: '',
-        mainboardNum: ''
+        mainboardNum: '',
+        buildPhone: '',
+        competentEnterprise: '',
+        competentPhone: '',
+        supervisorEnterprise: '',
+        supervisorPhone: '',
+        approvalEnterprise: '',
+        bond: '',
+        privateAccount: '',
+        buildName: '',
+        supervisorName: '',
+      },
+      perfectDataProject: {
+        mainboardNum: '',
+        buildPhone: '',
+        competentEnterprise: '',
+        competentPhone: '',
+        supervisorEnterprise: '',
+        supervisorPhone: '',
+        approvalEnterprise: '',
+        bond: '',
+        privateAccount: '',
+        buildName: '',
+        supervisorName: '',
       },
       ruleInlineProject: {
         projectCode: [
@@ -281,6 +401,38 @@ export default({
         ],
         mainboardNum: [
           { required: true, message: '主板编号', trigger: 'blur' }
+        ],
+        supervisorName: [
+          { required: true, message: '监理单位负责人', trigger: 'blur' }
+        ],
+        supervisorEnterprise: [
+          { required: true, message: '监理单位', trigger: 'blur' }
+        ],
+        supervisorPhone: [
+          { required: true, message: '监理单位电话', trigger: 'blur' }
+        ],
+        competentEnterprise: [
+          { required: true, message: '主管单位', trigger: 'blur' }
+        ]
+      },
+      ruleInlineProjectPerfect: {
+        projectCode: [
+          { required: true, message: '项目编码', trigger: 'blur' }
+        ],
+        mainboardNum: [
+          { required: true, message: '主板编号', trigger: 'blur' }
+        ],
+        supervisorName: [
+          { required: true, message: '监理单位负责人', trigger: 'blur' }
+        ],
+        supervisorEnterprise: [
+          { required: true, message: '监理单位', trigger: 'blur' }
+        ],
+        supervisorPhone: [
+          { required: true, message: '监理单位电话', trigger: 'blur' }
+        ],
+        competentEnterprise: [
+          { required: true, message: '主管单位', trigger: 'blur' }
         ]
       },
       // 基本参数
@@ -351,7 +503,10 @@ export default({
       project_loading: false,
       projectState:false,
       projectExist: false,
-      trainSeeState: false
+      trainSeeState: false,
+      editableTablesProgress: true,
+      perfectData: false,
+      perfect_loading: false
     }
   },
   computed: {
@@ -373,8 +528,10 @@ export default({
     // 分页查询
     getList () {
       this.dataList = []
+      this.editableTablesProgress = true
       getPageList(this.pageNum, this.selectValue).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
           this.$Message.error('暂无数据')
           this.pageTotal = 1
@@ -569,12 +726,13 @@ export default({
       this.project_loading = true
       this.$refs.formInlineProject.validate((valid) => {
         if (valid) {
-          projectAddMainboardNum(this.formInlineProject.mainboardNum, this.formInlineProject.projectCode).then(res => {
+          projectAddMainboardNum(this.formInlineProject).then(res => {
             this.$Message.success('成功')
             this.project_loading = false
             this.projectAddState = false
+            this.getList()
           }).catch(err => {
-            console.log(err)
+            this.$Message.error(err)
             this.project_loading = false
           })
         } else {
@@ -582,6 +740,32 @@ export default({
           this.project_loading = false
         }
       })
+    },
+    perfectDataSubmit () {
+      this.perfect_loading = true
+      this.$refs.perfectDataProject.validate((valid) => {
+        if (valid) {
+          delete this.perfectDataProject._rowKey
+          delete this.perfectDataProject.projectStatusDomain
+          delete this.perfectDataProject.areaCodeDomain
+          delete this.perfectDataProject.projectCategoryDomain
+          projectAddMainboardNum(this.perfectDataProject).then(res => {
+            this.$Message.success('成功')
+            this.perfect_loading = false
+            this.perfectData = false
+          }).catch(err => {
+            this.$Message.error(err)
+            this.perfect_loading = false
+          })
+        } else {
+          this.$Message.error('失败')
+          this.perfect_loading = false
+        }
+      })
+    },
+    perfectDataCancel () {
+      this.perfectData = false
+      this.$refs.perfectDataProject.resetFields()
     }
   },
   mounted () {

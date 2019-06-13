@@ -45,13 +45,14 @@ export const projectQuery = (projectCode) => {
 }
 
 /**
- * 添加主板编码
- * @param {*} mainboardNum
+ * 完善信息
+ * @param {*} obj
  */
-export const projectAddMainboardNum = (mainboardNum, projectCode) => {
+export const projectAddMainboardNum = (obj) => {
   let params = new URLSearchParams()
-  params.append('mainboardNum', mainboardNum)
-  params.append('projectCode', projectCode)
+  for (let key in obj) {
+    if (obj[key]) params.append(key, obj[key])
+  }
   return axios.request({
     url: 'project/add',
     data: params,

@@ -319,7 +319,6 @@
       async getCallData (e) {
         try {
           let imgUrl = await importFile(e.imgValue).then().catch()
-          console.log(imgUrl.info.split('/'))
           this.formInline.workerName = e.name
           this.formInline.idCardNumber = e.cardno
           this.formInline.nation = e.nation
@@ -329,8 +328,8 @@
           this.formInline.expiryDate = e.userlifeeValue
           this.formInline.grantOrg = e.police
           this.formInline.birthday = e.bornDate
+          this.formInline.gender = e.sex
           this.formInline.age = getAges(e.bornDate)
-          console.log(this.formInline.age)
         } catch (e) {
           console.log(e)
         }
@@ -359,6 +358,7 @@
               // 判断是否为修改
               if (this.apiState) {
                 formInlineNew.wid = this.projectCorpId + ''
+                delete formInlineNew.workerTypeDomain
                 workerEdit(formInlineNew).then(res => {
                   this.$Message.success('修改成功')
                   this.$emit('submitState', true)
@@ -417,9 +417,11 @@
     },
     watch: {
       row (e) {
+        console.log(e)
         // if (e.payRollBankCardNumber) {
         //   e.payRollBankCardNumber = aesDecrypt(e.payRollBankCardNumber)
         // }
+        e.workType = e.workerTypeDomain.tid
         this.formInline = e
       }
     }

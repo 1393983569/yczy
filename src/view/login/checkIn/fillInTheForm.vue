@@ -2,7 +2,7 @@
   <!-- 添加数据 -->
   <div class="password">
     <Form inline ref="formInline" style="width: 900px; height: 600px" :model="formInline" :rules="ruleInline" >
-      <FormItem prop="corpCode" label="社会信用代码或织机构代码(选其一)" style="width: 210px">
+      <FormItem prop="corpCode" label="社会信用代码或织机构代码" style="width: 210px">
         <Input type="text" v-model="formInline.corpCode" placeholder="请输入"></Input>
       </FormItem>
       <FormItem prop="corpName" label="企业名称"  style="width: 200px">

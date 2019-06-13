@@ -132,3 +132,17 @@ export const commonGetExperiences = () => {
     method: 'post'
   })
 }
+
+/**
+ * 按照地区查账号
+ * @param provinceCode 省ID
+ * @param cityCode 市ID
+ * @param accountType 类型 1超管 2 施工 3银行 4 人设
+ * @returns {*|never|AxiosPromise<any>|l.default}
+ */
+export const adminQuery = (provinceCode, cityCode, accountType) => {
+  return axios.request({
+    url: `/query?provinceCode=${provinceCode}&cityCode=${cityCode}&accountType=${accountType}`,
+    method: 'post'
+  })
+}

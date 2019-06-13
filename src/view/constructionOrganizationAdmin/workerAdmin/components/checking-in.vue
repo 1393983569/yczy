@@ -1,6 +1,10 @@
 <template>
   <div>
     <div>
+      <DatePicker type="month" v-model="datePickerValue" @on-change="onChangeDatePickerValue" placeholder="请选择月" style="width: 200px"></DatePicker>
+      <div style="margin-top: 5px;">
+        <span v-for="(item, index) in attendanceStatistics" :key="index">{{item.name}}:<span style="color: #f44336">{{item.value}}</span></span>
+      </div>
       <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
     </div>
   </div>
@@ -8,7 +12,7 @@
 <script>
 // 基本模板
 import editableTables from '_c/editableTables/editableTables.vue'
-import { attendance } from '@/api/constructionOrganizationAdmin/workerAdmin/checking-in'
+import { attendance, statisticGetAttendance } from '@/api/constructionOrganizationAdmin/workerAdmin/checking-in'
 import clickImg from '_c/clickImg'
 export default({
   components: {
@@ -47,8 +51,12 @@ export default({
       selectValue: '',
       // 分页参数
       pageNum: 1,
-      pageTotal: 1
+      pageTotal: 1,
       // 需求参数
+      datePickerValue: '',
+      datePicker: '',
+      wId: '',
+      attendanceStatistics: []
     }
   },
   methods: {
@@ -56,7 +64,9 @@ export default({
     getList (e) {
       this.dataList = []
       if (!e) return
-      attendance(this.pageNum, e).then(res => {
+      this.wId = e
+      let date = new Date(this.datePickerValue).Format("yyyy-MM")
+      attendance(this.pageNum, e, date).then(res => {
         console.log(res)
         try {
           this.dataList = []
@@ -65,9 +75,10 @@ export default({
             return
           }
           this.pageTotal = res.info.pageTotal
+          this.getStatisticGetAttendance(this.wId, date)
           this.dataList.push(...res.info.data)
-        } catch(e) {
-          console.log(e)
+        } catch(err) {
+          console.log(err)
         }
       }).catch(err => {
         this.$Message.error(err)
@@ -85,8 +96,9 @@ export default({
       this.pageNum = 1
     },
     getDateName (date) {
-      let now = new Date(date)
-      let hour = now.getHours()
+      // let now = new Date(date)
+      // let hour = now.getHours()
+      let hour = date.split(':')[0]
       if(hour < 6){return"凌晨"}
       else if (hour < 9){return"早上"}
       else if (hour < 12){return"上午"}
@@ -95,11 +107,31 @@ export default({
       else if (hour < 19){return"傍晚"}
       else if (hour < 22){return"晚上"}
       else {return"夜里"}
+    },
+    onChangeDatePickerValue (e) {
+      console.log(e)
+      this.getList(this.wId)
+    },
+    getStatisticGetAttendance (wId, date) {
+      let accountId = this.$store.state.user.accountId
+      this.attendanceStatistics = []
+      statisticGetAttendance(wId, date, accountId).then(res => {
+        for (let key in res.info) {
+          this.attendanceStatistics.push({
+            name: key,
+            value: res.info[key]
+          })
+        }
+        // attendanceStatistics
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
   mounted () {
     // 初始化管理员列表
     this.getList()
+    this.datePickerValue = new Date().Format("yyyy-MM")
   }
   // watch: {
   //   wId (e) {

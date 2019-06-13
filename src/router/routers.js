@@ -127,6 +127,16 @@ export default [
           title: '经验类型'
         },
         component: () => import('@/view/userManagement/experience.vue')
+      },
+      {
+        path: 'IDaudit',
+        name: 'IDaudit',
+        meta: {
+          access: ['quanxianfenpei_g'],
+          icon: '_gongren',
+          title: '账号审核'
+        },
+        component: () => import('@/view/userManagement/IDaudit/IDaudit.vue')
       }
     ]
   },
@@ -243,8 +253,8 @@ export default [
         component: () => import('@/view/constructionOrganizationAdmin/workerAdmin/workerAdmin.vue')
       },
       {
-        path: 'paySheet',
-        name: 'paySheet',
+        path: 'attendanceAdmin',
+        name: 'attendanceAdmin',
         meta: {
           // access: ['提交工资单'],
           icon: '_gongzibiaoshenhe',

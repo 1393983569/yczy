@@ -47,3 +47,21 @@ export const workerQuery = (pageNum, selectList) => {
     method: 'post'
   })
 }
+
+
+/**
+ * 添加保存工人进退场
+ * @param obj
+ * @returns {*|never|AxiosPromise<any>|l.default}
+ */
+export const itemExit = (obj) => {
+  let params = new URLSearchParams()
+  for (let key in obj) {
+    if (obj[key]) params.append(key, obj[key])
+  }
+  return axios.request({
+    url: 'workerAdRe/add',
+    data: params,
+    method: 'post'
+  })
+}

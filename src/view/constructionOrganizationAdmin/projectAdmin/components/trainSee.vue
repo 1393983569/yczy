@@ -1,6 +1,6 @@
 <template>
   <div>
-    <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
+    <editableTables :progress="editableTablesProgress" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
     <Modal
       v-model="workerSeeState"
       :mask-closable='false'
@@ -93,25 +93,27 @@ export default({
       pageNum: 1,
       pageTotal: 1,
       // 需求参数
-      workerSeeState: false
+      workerSeeState: false,
+      editableTablesProgress: true
     }
   },
   methods: {
     // 分页查询管理员
     getList (projectCode) {
       this.dataList = []
-      console.log(projectCode)
+      this.editableTablesProgress = true
       trainGetPageList(projectCode).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
-          this.$Message.error(res.info)
+          // this.$Message.error(res.info)
           this.pageTotal = 1
           return
         }
         this.pageTotal = res.info.pageTotal
         this.dataList.push(...res.info.data)
       }).catch(err => {
-        this.$Message.error(err)
+        // this.$Message.error(err)
       })
     },
     // 得到页数

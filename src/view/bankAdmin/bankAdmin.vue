@@ -1,12 +1,13 @@
 <template>
   <div>
     <span>请选择月份：</span>
-    <Cascader @on-change="changeCascader" :data="dataSelect" v-model="valueSelect" style="width: 250px; display: inline-block; margin-right: 10px;" :load-data="loadData"></Cascader>
+    <!--<Cascader  :data="dataSelect" v-model="valueSelect" :load-data="loadData"></Cascader>-->
+    <DatePicker @on-change="changeCascader" type="month" placeholder="请选择月份" style="width: 250px; display: inline-block; margin-right: 10px;"></DatePicker>
     <span>姓名：</span>
-    <Input search placeholder="姓名" :disabled="valueSelect.length === 0" @on-search="clickSearch" style="width: 150px;" />
+    <Input search placeholder="姓名" @on-search="clickSearch" style="width: 150px;" />
     <!-- <Button type="success" @click="modalGrant = true, sumSalary = 0" :disabled="buttonState">一键发放</Button> -->
     <div>
-      <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
+      <editableTables :columns='columns' :progress="editableTablesProgress" :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
     </div>
     <!-- <Modal
       v-model="modalGrant"
@@ -19,8 +20,10 @@
     </Modal> -->
     <Modal
       v-model="modalGrantSingle"
+      :closable="false"
       title="实发工资">
       <Input v-model="salary" placeholder="输入实发工资" style="width: 300px" />
+      <Input v-model="thirdPayRollCode"  style="width: 300px; margin-top: 10px" placeholder="第三方工资单编号" />
       <div slot="footer">
         <Button @click="cancelGrant">取消</Button>
         <Button type="success" :loading="sumSalarySingle_loading" @click="sumSalarySingleSubmit">确定</Button>
@@ -69,6 +72,13 @@ export default({
           }
         },
         {
+          title: '提交时间',
+          key: 'createTime',
+          render: (h, params) => {
+            return h('div', `${params.row.createTime.split('-')[0]} - ${params.row.createTime.split('-')[1]}`)
+          }
+        },
+        {
           title: '操作',
           key: 'action',
           align: 'center',
@@ -87,6 +97,7 @@ export default({
                 on: {
                   click: () => {
                     this.salary = ''
+                    this.thirdPayRollCode = ''
                     this.wId = params.row.id
                     this.modalGrantSingle = true
                   }
@@ -119,15 +130,20 @@ export default({
       sumSalarySingle_loading: false,
       wId: '',
       salary: '',
-      nameData: ''
+      nameData: '',
+      thirdPayRollCode: '',
+      editableTablesProgress: true,
+      dateMonth: ''
     }
   },
   methods: {
     // 分页查询
     getList () {
       this.dataList = []
-      workerSalaryGetPageList(this.pageNum, this.timePbId, this.nameData).then(res => {
+      this.editableTablesProgress = true
+      workerSalaryGetPageList(this.pageNum, this.timePbId, this.nameData, this.dateMonth).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
           this.$Message.error(res.info)
           this.pageTotal = 1
@@ -254,8 +270,9 @@ export default({
     },
     // 级联
     changeCascader (value) {
-      this.selectValue = value[2]
-      this.timePbId = value[3]
+      // this.selectValue = value[2]
+      // this.timePbId = value[3]
+      this.dateMonth = value ? new Date(value).Format("yyyy-MM") : ''
       this.getList()
     },
     clickSearch (e) {
@@ -280,10 +297,12 @@ export default({
       this.sumSalary = ''
       this.modalGrant = false
       this.salary = ''
+      this.thirdPayRollCode = ''
+      this.modalGrantSingle = false
     },
     sumSalarySingleSubmit () {
       this.sumSalarySingle_loading = true
-      payOff(this.wId, this.salary).then(res => {
+      payOff(this.wId, this.salary, this.thirdPayRollCode).then(res => {
         this.$Message.success('成功')
         this.sumSalary = ''
         this.sumSalarySingle_loading = false

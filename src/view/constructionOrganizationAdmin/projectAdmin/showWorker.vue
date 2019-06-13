@@ -2,7 +2,7 @@
   <div>
     <Button type="primary" @click="addWorkerValue">添加工人</Button>
     <div>
-      <editableTables :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
+      <editableTables :progress="editableTablesProgress" :columns='columns' :pageTotal='pageTotal' :selectShow="false" v-model="dataList" @getPage='getPageNum'></editableTables>
     </div>
     <Modal
       v-model="modalMessage"
@@ -111,7 +111,8 @@ export default({
       modalMessage: false,
       modificationData: '',
       loading: false,
-      callData: ''
+      callData: '',
+      editableTablesProgress: true
     }
   },
   props: {
@@ -123,8 +124,10 @@ export default({
     // 分页查询管理员
     getList () {
       this.dataList = []
+      this.editableTablesProgress = true
       getPageList(this.pageNum, this.pid.split(':')[0]).then(res => {
         this.dataList = []
+        this.editableTablesProgress = false
         if (res.info === '暂无数据') {
           this.$Message.error(res.info)
           this.pageTotal = 1

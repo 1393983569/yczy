@@ -9,6 +9,7 @@
           <!--删除-->
           <Icon type="ios-close-circle-outline" class="iconDel" @click="delList(index)" />
           <section style="width: 200px">
+            <!--{{configUrl}}-->
             <!--<uploadMultiple @succeedOk="imgSucceed" v-model="dataList[index].dataImg" style="display: inline-block"/>-->
             <Upload :action="`${configUrl}/projectCorpTeam/importFile`"
                     :on-success="fileSuccess"
