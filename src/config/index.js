@@ -26,9 +26,9 @@ export default {
    */
   baseUrl: {
     // dev: 'http://servicezhgd.yungoux.com/admin',
-    dev: 'http://gongdi-service.lz-cc.com:8088/admin',
+    dev: 'http://service.zhiyingtec.com:8088/admin',
     // pro: 'http://servicezhgd.yungoux.com/admin',
-    pro: 'http://gongdi-service.lz-cc.com/admin',
+    pro: 'http://service.zhiyingtec.com/admin',
     // 七牛旧图片上传组件回显地址
     qiniuUrl: 'http://qiniu.zhiyingtec.com/',
     // 七牛新图片上传组件回显地址
