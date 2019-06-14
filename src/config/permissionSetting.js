@@ -20,6 +20,31 @@ export default {
           "value": "工种管理",
           "title": "工种管理",
           'id': "yonghu_g",
+        },
+        {
+          "value": "设备管理",
+          "title": "设备管理",
+          'id': "yonghu_g",
+        },
+        {
+          "value": "账号审核",
+          "title": "账号审核",
+          'id': "yonghu_g",
+        },
+        {
+          "value": "工种管理",
+          "title": "工种管理",
+          'id': "yonghu_g",
+        },
+        {
+          "value": "轮播图管理",
+          "title": "轮播图管理",
+          'id': "yonghu_g",
+        },
+        {
+          "value": "法律法规管理",
+          "title": "法律法规管理",
+          'id': "yonghu_g",
         }
       ]
     },
@@ -52,6 +77,11 @@ export default {
           'id': "住建局",
         },
         {
+          "value": "提交工资单",
+          "title": "查看工人",
+          'id': "住建局",
+        },
+        {
           "value": "住建局用户管理",
           "title": "用户管理",
           'id': "住建局",
@@ -79,6 +109,16 @@ export default {
         {
           "value": "工人管理",
           "title": "工人管理",
+          'id': "施工单位管理",
+        },
+        {
+          "value": "提交工资单",
+          "title": "提交工资单",
+          'id': "施工单位管理",
+        },
+        {
+          "value": "职位发布",
+          "title": "职位发布",
           'id': "施工单位管理",
         },
         // {

@@ -102,7 +102,7 @@ export default [
         path: 'equipmentManagement',
         name: 'equipmentManagement',
         meta: {
-          // access: ['shebeiguanli'],
+          access: ['设备管理'],
           icon: '_gongren',
           title: '设备管理'
         },
@@ -112,7 +112,7 @@ export default [
         path: 'compensation',
         name: 'compensation',
         meta: {
-          // access: ['工种管理'],
+          access: ['工种管理'],
           icon: '_leibieguanli',
           title: '薪资管理'
         },
@@ -122,7 +122,7 @@ export default [
         path: 'experience',
         name: 'experience',
         meta: {
-          // access: ['经验类型'],
+          access: ['经验类型'],
           icon: '_leibieguanli',
           title: '经验类型'
         },
@@ -132,11 +132,31 @@ export default [
         path: 'IDaudit',
         name: 'IDaudit',
         meta: {
-          access: ['quanxianfenpei_g'],
+          access: ['账号审核'],
           icon: '_gongren',
           title: '账号审核'
         },
         component: () => import('@/view/userManagement/IDaudit/IDaudit.vue')
+      },
+      {
+        path: 'slideshow',
+        name: 'slideshow',
+        meta: {
+          // access: ['轮播图'],
+          icon: '_gongren',
+          title: '轮播图管理'
+        },
+        component: () => import('@/view/userManagement/slideshow/slideshow.vue')
+      },
+      {
+        path: 'lawsAndRegulations',
+        name: 'lawsAndRegulations',
+        meta: {
+          // access: ['轮播图'],
+          icon: '_gongren',
+          title: '法律法规管理'
+        },
+        component: () => import('@/view/userManagement/lawsAndRegulations/lawsAndRegulations.vue')
       }
     ]
   },
@@ -256,7 +276,7 @@ export default [
         path: 'attendanceAdmin',
         name: 'attendanceAdmin',
         meta: {
-          // access: ['提交工资单'],
+          access: ['提交工资单'],
           icon: '_gongzibiaoshenhe',
           title: '考勤设置'
         },
@@ -266,7 +286,7 @@ export default [
         path: 'positionAdmin',
         name: 'positionAdmin',
         meta: {
-          // access: ['shebeiguanli'],
+          access: ['职位发布'],
           icon: '_gongren',
           title: '职位发布'
         },

@@ -12,7 +12,7 @@
         </quillEditor>
       </Col>
     </Row>
-    <div style="margin-top: 10px">
+    <div style="margin-top: 10px" v-if="showSubmit">
       <Button v-if="cMod === 'add'" size="large" @click="send" type="success">发布</Button>
       <Button v-if="cMod === 'edit'" size="large" @click="edit" type="success">保存编辑</Button>
     </div>
@@ -51,6 +51,14 @@ export default {
     height: {
       type: Number,
       default: 562
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    showSubmit: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
@@ -90,6 +98,7 @@ export default {
     },
     onEditorChange ({ quill, html, text }) {
       // console.log('editor change!', quill, html, text)
+      this.$emit('input', html)
       this.content = html
       // console.log(this.content);
     },
@@ -108,6 +117,12 @@ export default {
     onImage (url) {
       this.$refs.myQuillEditor.quill.insertEmbed(this.range.index, 'image', url)
       this.showQiniu = false
+    },
+    // 清空
+    emptyHtml () {
+      this.$nextTick(() => {
+        this.content = ''
+      })
     }
   },
   mounted () {
@@ -129,6 +144,9 @@ export default {
   },
   watch: {
     'editorContent': function (e) {
+      this.content = e
+    },
+    value (e) {
       this.content = e
     }
   }

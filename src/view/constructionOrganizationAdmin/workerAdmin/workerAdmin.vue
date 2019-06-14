@@ -212,6 +212,7 @@ export default({
                 },
                 style: {
                   marginRight: '5px',
+                  marginTop: '5px'
                   // display: 'block'
                 },
                 on: {
