@@ -32,11 +32,6 @@ export default {
           'id': "yonghu_g",
         },
         {
-          "value": "工种管理",
-          "title": "工种管理",
-          'id': "yonghu_g",
-        },
-        {
           "value": "轮播图管理",
           "title": "轮播图管理",
           'id': "yonghu_g",

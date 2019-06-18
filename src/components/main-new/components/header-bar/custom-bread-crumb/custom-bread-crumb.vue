@@ -1,9 +1,9 @@
 <template>
   <div class="custom-bread-crumb">
-    <Breadcrumb :style="{fontSize: `${fontSize}px`}, {color:'#002a19'}">
+    <Breadcrumb :style="{fontSize: `${fontSize}px`}, {color:'#232549'}">
       <BreadcrumbItem v-for="item in list" :key="`bread-crumb-${item.name}`" style="color: #002a19">
         <common-icon style="margin-right: 4px;" :type="item.icon || ''"/>
-        {{ showTitle(item) }}
+        <span style="color: #348EED">{{ showTitle(item) }}</span>
       </BreadcrumbItem>
     </Breadcrumb>
   </div>
@@ -24,7 +24,7 @@ export default {
     },
     fontSize: {
       type: Number,
-      default: 14
+      default: 24
     },
     showIcon: {
       type: Boolean,

@@ -15,7 +15,7 @@ export default {
       return this.parentItem.children
     },
     textColor () {
-      return this.theme === 'dark' ? '#fff' : '#495060'
+      return this.theme === 'light' ? '#fff' : '#495060'
     }
   }
 }

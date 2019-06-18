@@ -26,7 +26,7 @@ export default {
    */
   baseUrl: {
     // dev: 'http://servicezhgd.yungoux.com/admin',
-    dev: 'http://service.zhiyingtec.com:8088/admin',
+    dev: 'http://service.zhiyingtec.com/admin',
     // pro: 'http://servicezhgd.yungoux.com/admin',
     pro: 'http://service.zhiyingtec.com/admin',
     // 七牛旧图片上传组件回显地址

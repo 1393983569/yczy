@@ -53,8 +53,8 @@
 @table-td-hover-bg            : #ebf7ff;
 @table-td-highlight-bg        : #ebf7ff;
 // 导航栏颜色
-@menu-dark-title              : #348bda;
-@menu-dark-active-bg          : #348bda;
+@menu-dark-title              : #ffffff;
+@menu-dark-active-bg          : #ffffff;
 @menu-dark-subsidiary-color   : rgba(255,255,255,.7);
 @menu-dark-group-title-color  : rgba(255,255,255,.36);
 @date-picker-cell-hover-bg    : #e1f0fe;
@@ -215,8 +215,8 @@
 @anchor-border-width: 2px;
 .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover{
   border-right: none;
-  color: #fff;
-  background: @menu-color-hover !important;
+  color: #4e5486;
+  background: #fff !important;
 }
 .ivu-menu-horizontal .ivu-menu-item, .ivu-menu-horizontal .ivu-menu-submenu{
   padding: 0 5px !important;
@@ -238,11 +238,40 @@
   background-color: #65b5f5;
 }
 .ivu-menu-horizontal .ivu-menu-submenu .ivu-select-dropdown .ivu-menu-item:hover{
-  background-color: #65b5f5;
+  background-color: #ffffff;
 }
 .ivu-menu-horizontal .ivu-menu-submenu .ivu-select-dropdown{
-  background-color: #348bda;
+  background-color: #ffffff;
 }
 .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-item, .ivu-menu-dark.ivu-menu-horizontal .ivu-menu-submenu{
   font-size: 18px !important;
+}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title:hover{
+  color: #4e5486 !important;
+}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-item, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title{
+  line-height: 76px;
+  padding: 0;
+  margin-left: 40px;
+  color: #4e5486;
+  font-size: 18px;
+}
+.ivu-menu-vertical .ivu-menu-submenu-title-icon{
+  display: none;
+}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title{
+  color: #4e5486 !important;
+}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-child-item-active > .ivu-menu-submenu-title{
+  color: #4e5486 !important;
+}
+.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):after{
+  width: 7px !important;
+  left: 5px;
+}
+.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu){
+  font-size: 20px;
+}
+.ivu-menu-vertical .ivu-menu-item, .ivu-menu-vertical .ivu-menu-submenu-title{
+ font-size: 18px;
 }

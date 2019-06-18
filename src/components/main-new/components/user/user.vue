@@ -1,17 +1,19 @@
 <template>
   <div class="user-avator-dropdown">
-    <Dropdown @on-click="handleClick">
-      <!--<Badge :dot="!!messageUnreadCount">-->
-        <Avatar :src="userAvator"/>
-      <!--</Badge>-->
-      <Icon color="#002a19" :size="18" type="md-arrow-dropdown"></Icon>
-      <DropdownMenu slot="list">
-        <!--<DropdownItem name="message">-->
-          <!--消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>-->
-        <!--</DropdownItem>-->
-        <DropdownItem name="logout">退出登录</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
+    <!--<Dropdown @on-click="handleClick">-->
+      <!--&lt;!&ndash;<Badge :dot="!!messageUnreadCount">&ndash;&gt;-->
+        <!--<Avatar :src="userAvator"/>-->
+      <!--&lt;!&ndash;</Badge>&ndash;&gt;-->
+      <!--<Icon color="#002a19" :size="18" type="md-arrow-dropdown"></Icon>-->
+      <!--<DropdownMenu slot="list">-->
+        <!--&lt;!&ndash;<DropdownItem name="message">&ndash;&gt;-->
+          <!--&lt;!&ndash;消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>&ndash;&gt;-->
+        <!--&lt;!&ndash;</DropdownItem>&ndash;&gt;-->
+        <!--<DropdownItem name="logout">退出登录</DropdownItem>-->
+      <!--</DropdownMenu>-->
+    <!--</Dropdown>-->
+    <span style="font-size: 48px; display: inline-block; margin-right: 50px">admin</span>
+    <Icon style="font-size: 26px;position: relative; top: -12px;cursor: pointer;" type="ios-exit-outline" @on-click="handleClick" />
   </div>
 </template>
 
