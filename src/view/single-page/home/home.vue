@@ -76,9 +76,9 @@ export default({
     }
   },
   mounted () {
-    this.$router.push({
-      name: Cookies.get('token_zhihuiminggong')
-    })
+    // this.$router.push({
+    //   name: Cookies.get('token_zhihuiminggong')
+    // })
     // this.disposeList(this.newList, this.oldList)
   }
 })

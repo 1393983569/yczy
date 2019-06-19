@@ -41,7 +41,6 @@
     },
     data () {
       const validaAccountPhone = (rule, value, callback) => {
-        console.log(value)
         if (value !== '') {
           if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(value))) {
             callback(new Error('请输入正确的手机号'))
@@ -96,7 +95,6 @@
       handleSubmit (name) {
         // this.loading = true
         return this.$refs[name].validate((valid) => {
-          console.log(this.formInline)
           edit().then(res => {
 
           }).catch(err => {

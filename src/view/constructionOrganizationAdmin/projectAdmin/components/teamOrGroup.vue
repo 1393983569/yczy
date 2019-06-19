@@ -184,7 +184,6 @@
             return
           }
           this.pageTotal = res.info.pageTotal
-          console.log(res.info.data)
           this.dataList.push(...res.info.data)
         }).catch(err => {
           this.$Message.error(err)

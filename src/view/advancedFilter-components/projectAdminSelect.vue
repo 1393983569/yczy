@@ -61,7 +61,6 @@ export default ({
           [key]: value
         })
       })
-      console.log('sssssssssss')
       this.$emit('sendDataList', this.sendList)
     }
   },

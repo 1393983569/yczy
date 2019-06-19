@@ -63,7 +63,7 @@ export default {
       log_loading: false,
       siteId: [],
       clientSide: false, // 如果为false为施工
-      accountType: 4 //  1超管 2 施工 3银行 4 人设
+      accountType: 2 //  1超管 2 施工 3银行 4 人设
     }
   },
   computed: {
@@ -89,7 +89,6 @@ export default {
       })
     },
     changeCascader (e) {
-      console.log(e)
       this.modelSelect = []
       adminQuery(e[0], e[1], this.accountType).then(res => {
         this.modelSelect = []

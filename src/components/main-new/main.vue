@@ -16,8 +16,8 @@
       </Header>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
-          <div style="height: 80px; line-height: 80px; background-color: #ffffff; box-shadow: 20px -2px 10px -13px #f3f7fb inset">
-            <span style="font-size: 24px; color: #232549; display: inline-block; margin-left: 20px">云创智鹰 -</span><custom-bread-crumb :list="breadCrumbList"></custom-bread-crumb>
+          <div style="height: 60px; line-height: 60px; background-color: #ffffff; box-shadow: 20px -2px 10px -13px #f3f7fb inset">
+            <span style="font-size: 24px; color: #232549; display: inline-block; margin-left: 20px">云创智鹰 -</span><custom-bread-crumb :list="breadCrumbList" style="margin-left: 5px"></custom-bread-crumb>
           </div>
           <Content class="content-wrapper">
             <keep-alive :include="cacheList">
@@ -184,7 +184,7 @@
   .logo{
     height: 220px;
     width: 246px;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     display: block;
   }
 </style>

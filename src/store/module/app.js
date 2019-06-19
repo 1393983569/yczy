@@ -19,7 +19,6 @@ export default {
       state.breadCrumbList = getBreadCrumbList(routeMetched, state.homeRoute)
     },
     setTagNavList (state, list) {
-      console.log(state, list)
       let tagList = []
       if (list) {
         tagList = [...list]

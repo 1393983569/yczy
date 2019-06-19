@@ -687,7 +687,6 @@ export default({
         } catch (e) {
           console.log(e)
         }
-        console.log(this.workerList)
       }).catch(err => {
 
       })
@@ -698,7 +697,6 @@ export default({
     },
     // 查询项目是否存在
     blurProject (e) {
-      console.log(e.target.value)
       this.projectState = true
       projectQuery(e.target.value).then(res => {
          this.projectState = false

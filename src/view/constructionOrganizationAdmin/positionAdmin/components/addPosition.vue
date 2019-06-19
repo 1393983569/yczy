@@ -117,7 +117,6 @@
     },
     watch: {
       row (e) {
-        console.log(e)
         this.formInline = e
       }
     }

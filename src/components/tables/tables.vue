@@ -62,7 +62,7 @@ export default ({
       this.$emit('sendEvent', 'empty')
     },
     clearSingleSelect (e) {
-      console.log(e)
+
     },
     update () {
       if (this.selectData === '') {

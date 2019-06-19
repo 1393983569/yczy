@@ -53,7 +53,6 @@ export default {
       if (!state.parentNameList.includes(parentNameList)) {
         state.parentNameList.push(parentNameList)
       }
-      console.log(state.parentNameList)
     }
   },
   actions: {

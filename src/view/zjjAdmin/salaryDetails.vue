@@ -177,12 +177,10 @@ export default({
     },
     // 动态获取
     loadData (item, callback) {
-      console.log(item.state)
       item.children = []
       item.loading = true
       if (item.state + '' === '1') {
         getPropject(item.value).then(res => {
-          console.log(this.dataSelect)
           if (res.info === '暂无数据') {
             this.$Message.error('暂无数据')
             item.loading = false

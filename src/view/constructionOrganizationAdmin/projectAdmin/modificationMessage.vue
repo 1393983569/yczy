@@ -90,7 +90,6 @@ export default {
   },
   methods: {
     handleSubmit (name) {
-      console.log(this.formInline)
       this.loading = true
       return this.$refs[name].validate((valid) => {
         if (valid) {

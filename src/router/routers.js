@@ -52,8 +52,8 @@ export default [
     redirect: '/home',
     component: Main,
     meta: {
-      hideInMenu: true,
-      notCache: true
+      // hideInMenu: true,
+      // notCache: true
     },
     children: [
       {
@@ -61,8 +61,9 @@ export default [
         name: 'home',
         meta: {
           title: '首页',
-          hideInMenu: true,
-          notCache: true
+          // hideInMenu: true,
+          icon: '_iconshouye1',
+          // notCache: true
         },
         component: () => import('@/view/single-page/home')
       }

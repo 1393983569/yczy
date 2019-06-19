@@ -1,7 +1,7 @@
 <template>
   <div class="custom-bread-crumb">
     <Breadcrumb :style="{fontSize: `${fontSize}px`}, {color:'#232549'}">
-      <BreadcrumbItem v-for="item in list" :key="`bread-crumb-${item.name}`" style="color: #002a19">
+      <BreadcrumbItem v-for="item in list" v-show="showBreadcrumb(list, item.name)" :key="`bread-crumb-${item.name}`" style="color: #002a19">
         <common-icon style="margin-right: 4px;" :type="item.icon || ''"/>
         <span style="color: #348EED">{{ showTitle(item) }}</span>
       </BreadcrumbItem>
@@ -40,6 +40,15 @@ export default {
     },
     getCustomIconName (iconName) {
       return iconName.slice(1)
+    },
+    showBreadcrumb (list, name) {
+      if (list.length > 1 && name === 'home') {
+        return false
+      } else if (list.length === 1 && name === 'home') {
+        return true
+      } else {
+        return true
+      }
     }
   }
 }

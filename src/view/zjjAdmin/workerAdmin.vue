@@ -170,7 +170,6 @@
         this.getList()
       },
       contrac (id, e) {
-        console.log(e, id)
         this.contractSeeState = true
         this.$refs.contractSeeRef.getList(id)
       }

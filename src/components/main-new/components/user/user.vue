@@ -12,8 +12,11 @@
         <!--<DropdownItem name="logout">退出登录</DropdownItem>-->
       <!--</DropdownMenu>-->
     <!--</Dropdown>-->
-    <span style="font-size: 48px; display: inline-block; margin-right: 50px">{{name}}</span>
-    <Icon style="font-size: 26px;position: relative; top: -12px;cursor: pointer;" type="ios-exit-outline" @click="handleClick" />
+    <span style="font-size: 30px; display: inline-block; margin-right: 50px;">{{name}}</span>
+    <i class="iconfont icontuichu2"  style="font-size: 30px;position: relative; top: 2px;cursor: pointer; float: right;"  @click="handleClick" ></i>
+    <!-- <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-xxx"></use>
+    </svg> -->
   </div>
 </template>
 
@@ -64,7 +67,6 @@ export default {
       })
     },
     handleClick (name) {
-      console.log('sssssssssssssssssssss')
       this.logout()
       // switch (name) {
       //   case 'logout': this.logout()

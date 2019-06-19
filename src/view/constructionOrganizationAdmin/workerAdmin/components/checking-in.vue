@@ -29,7 +29,6 @@ export default({
           title: '考工人考勤方向',
           key: 'direction',
           render: (h, params) => {
-            console.log(params.row)
             return h('div', params.row.direction + '' === '1' ? '出厂' : '入场' )
           }
         },

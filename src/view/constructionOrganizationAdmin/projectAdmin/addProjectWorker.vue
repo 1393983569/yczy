@@ -56,7 +56,6 @@ export default {
   },
   data () {
     const validaAccountPhone = (rule, value, callback) => {
-      console.log(value)
       if (value !== '') {
         if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(value))) {
           callback(new Error('请输入正确的手机号'))
@@ -131,7 +130,6 @@ export default {
     handleSubmit (name) {
       // this.loading = true
       return this.$refs[name].validate((valid) => {
-        console.log(this.formInline)
        try {
          // 进场
          if (this.dataAccessoryEntryTime.length !== 0) {
@@ -172,7 +170,6 @@ export default {
           if (this.formInline.exitTime) {
             this.formInline.exitTime = new Date(this.formInline.exitTime).Format("yyyy-MM-dd")
           }
-          console.log(this.formInline)
           add(this.formInline).then(res => {
             // this.loading = false
             this.$emit('formState', true)

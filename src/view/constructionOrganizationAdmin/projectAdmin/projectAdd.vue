@@ -192,13 +192,11 @@ export default {
   methods: {
     handleSubmit (name) {
       this.loading = true
-      console.log(this.formInline)
       return this.$refs[name].validate((valid) => {
         if (valid) {
           this.formInline.dLoginName = this.dLoginNameValue
           this.formInline.endTime = new Date(this.formInline.endTime).Format('yyyy-M-d')
           this.formInline.startTime = new Date(this.formInline.startTime).Format('yyyy-M-d')
-          console.log(this.formInline)
           add(this.formInline).then(res => {
             this.loading = false
             this.$emit('formState', true)
@@ -234,9 +232,7 @@ export default {
     async getSelectList () {
       try {
         let build = await getAdminsList(4).then().catch()
-        console.log(build.info.data)
         this.buildList = build.info.data
-        console.log(this.buildList)
       } catch (e) {
         console.log(e)
       }

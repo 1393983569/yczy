@@ -421,7 +421,6 @@ export default({
         delete this.offDateObj.projectCorpTeamDomain
         delete this.offDateObj.legalManIdCardTypeDomain
         delete this.offDateObj.workerTypeDomain
-        console.log(this.offDateObj, '*********************************')
         itemExit(this.offDateObj).then(res => {
           this.loading_uploadOffOk = false
           this.offShow = false

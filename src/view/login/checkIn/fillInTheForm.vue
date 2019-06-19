@@ -197,7 +197,6 @@ export default {
           // 处理时间格式
           this.formInline.registerDate = this.formInline.registerDate ? new Date(this.formInline.registerDate).Format("yyyy-MM-dd") : ''
           this.formInline.establishDate = this.formInline.establishDate ? new Date(this.formInline.establishDate).Format("yyyy-MM-dd") : ''
-          console.log(this.formInline)
           add(this.formInline).then(res => {
             this.loading = false
             this.$emit('formSuccess', true)

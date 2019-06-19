@@ -389,7 +389,6 @@ export default {
     },
     confirmAdd () {
       this.add_loading = true
-       console.log(this.formInline)
       this.$refs['formInline'].validate((valid) => {
         if (valid) {
           try{

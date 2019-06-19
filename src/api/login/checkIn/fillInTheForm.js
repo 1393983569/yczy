@@ -1,7 +1,6 @@
 import axios from '@/libs/api.request'
 
 export const add = (addObj) => {
-  console.log(addObj)
   let params = new URLSearchParams()
   if (addObj.areaCode) {
     addObj.areaCode = addObj.areaCode[addObj.areaCode.length -1]

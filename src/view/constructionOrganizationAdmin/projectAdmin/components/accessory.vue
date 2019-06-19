@@ -87,7 +87,6 @@
       },
       // 判断格式
       onFormat (file) {
-        console.log(file)
         this.$Notice.warning({
           title: `文件${file.name}格式不正确`
         })

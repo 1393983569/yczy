@@ -19,7 +19,7 @@
           </div>
           <div class="register">
             <div class="register-cut">
-              <!-- <span @click="checkIn" style="color: #eb6c27">工地入住</span> -->
+               <span @click="checkIn" style="color: #eb6c27">工地入住</span>
             </div>
           </div>
         </div>
