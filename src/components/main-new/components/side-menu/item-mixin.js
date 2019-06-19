@@ -9,6 +9,7 @@ export default {
   },
   computed: {
     parentName () {
+      this.$store.commit('steParentNameList', this.parentItem.name)
       return this.parentItem.name
     },
     children () {

@@ -12,8 +12,8 @@
         <!--<DropdownItem name="logout">退出登录</DropdownItem>-->
       <!--</DropdownMenu>-->
     <!--</Dropdown>-->
-    <span style="font-size: 48px; display: inline-block; margin-right: 50px">admin</span>
-    <Icon style="font-size: 26px;position: relative; top: -12px;cursor: pointer;" type="ios-exit-outline" @on-click="handleClick" />
+    <span style="font-size: 48px; display: inline-block; margin-right: 50px">{{name}}</span>
+    <Icon style="font-size: 26px;position: relative; top: -12px;cursor: pointer;" type="ios-exit-outline" @click="handleClick" />
   </div>
 </template>
 
@@ -22,6 +22,11 @@ import './user.less'
 import { mapActions } from 'vuex'
 export default {
   name: 'User',
+  data() {
+    return {
+      name: this.$store.state.user.shopName
+    }
+  },
   props: {
     userAvator: {
       type: String,
@@ -59,12 +64,14 @@ export default {
       })
     },
     handleClick (name) {
-      switch (name) {
-        case 'logout': this.logout()
-          break
-        case 'message': this.message()
-          break
-      }
+      console.log('sssssssssssssssssssss')
+      this.logout()
+      // switch (name) {
+      //   case 'logout': this.logout()
+      //     break
+      //   case 'message': this.message()
+      //     break
+      // }
     }
   }
 }

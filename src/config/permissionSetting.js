@@ -135,7 +135,7 @@ export default {
       "children": [
         {
           // 子权限名称
-          "value": "银行管理Node",
+          "value": "工资管理",
           // 名称
           "title": "工资管理",
           // 父标识

@@ -1,4 +1,5 @@
 <template>
+  <!-- 只支持2层嵌套 多层参考新项目-->
     <div>
       <Tree :data="dataTree" show-checkbox @on-check-change="getSelectTree" ref="Tree"></Tree>
     </div>

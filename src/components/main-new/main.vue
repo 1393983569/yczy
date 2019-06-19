@@ -4,12 +4,7 @@
       <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
         <!-- 需要放在菜单上面的内容，如Logo，写在side-menu标签内部，如下 -->
         <div class="logo">
-          <svg class="iconfont-svg" style="font-size: 42px;">
-            <use xlink:href="#iconziyuan2"></use>
-          </svg>
-          <span style="font-size: 20px; font-weight: 700">
-            云创智鹰后台管理 20px
-          </span>
+          <img :src="logImg" key="min-logo" />
         </div>
       </side-menu>
     </Sider>
@@ -21,7 +16,7 @@
       </Header>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
-          <div style="height: 80px; line-height: 80px; background-color: #ffffff">
+          <div style="height: 80px; line-height: 80px; background-color: #ffffff; box-shadow: 20px -2px 10px -13px #f3f7fb inset">
             <span style="font-size: 24px; color: #232549; display: inline-block; margin-left: 20px">云创智鹰 -</span><custom-bread-crumb :list="breadCrumbList"></custom-bread-crumb>
           </div>
           <Content class="content-wrapper">
@@ -48,6 +43,7 @@
   import { mapMutations, mapActions, mapGetters } from 'vuex'
   import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
   import routers from '@/router/routers'
+  import logImg from '@/assets/images/ztLog.png'
   import './main.less'
   export default {
     name: 'Main',
@@ -65,7 +61,8 @@
     data () {
       return {
         collapsed: false,
-        isFullscreen: false
+        isFullscreen: false,
+        logImg
       }
     },
     computed: {
@@ -171,7 +168,7 @@
       })
       this.setBreadCrumb(this.$route)
       // 设置初始语言
-      this.setLocal(this.$i18n.locale)
+      // this.setLocal(this.$i18n.locale)
       // 如果当前打开页面不在标签栏中，跳到homeName页
       if (!this.tagNavList.find(item => item.name === this.$route.name)) {
         this.$router.push({
@@ -179,13 +176,16 @@
         })
       }
       // 获取未读消息条数
-      this.getUnreadMessageCount()
+      // this.getUnreadMessageCount()
     }
   }
 </script>
 <style>
   .logo{
-
+    height: 220px;
+    width: 246px;
+    margin-top: 20px;
+    display: block;
   }
 </style>
 

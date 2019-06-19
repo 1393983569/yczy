@@ -1,8 +1,8 @@
 <template>
   <Form ref="loginForm" :model="form" :rules="rules">
-    <div style="margin-bottom: 10px; font-size: 20px">欢迎登录！</div>
+    <!--<div style="margin-bottom: 10px; font-size: 20px">欢迎登录！</div>-->
     <div style="margin-bottom: 24px" v-if="clientSide">
-      <siteSelect @changeCascader="changeCascader" v-model="siteId" :width="'250px'"></siteSelect>
+      <siteSelect @changeCascader="changeCascader" v-model="siteId" :width="'300px'"></siteSelect>
     </div>
     <FormItem prop="userName">
       <Input v-model="form.userName" v-if="!clientSide" placeholder="请输入用户名">
@@ -22,7 +22,7 @@
       </Input>
     </FormItem>
     <FormItem style="margin-bottom: 0">
-      <Button @click="handleSubmit" type="primary" :loading="log_loading" long>登录</Button>
+      <Button @click="handleSubmit" style="background-color: #44abf0; border: solid 1px #4095d6;" type="primary" :loading="log_loading" long>登录</Button>
     </FormItem>
   </Form>
 </template>
@@ -63,7 +63,7 @@ export default {
       log_loading: false,
       siteId: [],
       clientSide: false, // 如果为false为施工
-      accountType: 3 //  1超管 2 施工 3银行 4 人设
+      accountType: 4 //  1超管 2 施工 3银行 4 人设
     }
   },
   computed: {

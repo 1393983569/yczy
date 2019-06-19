@@ -17,7 +17,8 @@ export default {
     homeName: '',
     screenState: false,
     secretKey: '',
-    accountId: ''
+    accountId: '',
+    parentNameList: []
   },
   mutations: {
     setAvator (state, avatorPath) {
@@ -47,6 +48,12 @@ export default {
     },
     secretKey (state, secretKey) {
       state.secretKey = secretKey
+    },
+    steParentNameList (state, parentNameList) {
+      if (!state.parentNameList.includes(parentNameList)) {
+        state.parentNameList.push(parentNameList)
+      }
+      console.log(state.parentNameList)
     }
   },
   actions: {

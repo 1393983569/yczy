@@ -4,21 +4,22 @@
   <template>
     <div class="login" @keydown.enter="handleLogin">
       <div class="logo-location">
-        <img src="http://qiniu-hr-landa.lz-cc.com/1557826353278.png" style="height: 85px; margin-right: 15px">
-        <div class="logo-img">
-          <img src="http://qiniu-hr-landa.lz-cc.com/1557826400942.png">
-          <img src="http://qiniu-hr-landa.lz-cc.com/1557826268246.png">
-        </div>
+        <!--<img src="http://qiniu-hr-landa.lz-cc.com/1557826353278.png" style="height: 85px; margin-right: 15px">-->
+        <!--<div class="logo-img">-->
+          <!--<img src="http://qiniu-hr-landa.lz-cc.com/1557826400942.png">-->
+          <!--<img src="http://qiniu-hr-landa.lz-cc.com/1557826268246.png">-->
+        <!--</div>-->
       </div>
 
       <div class="login-con">
         <div class="form-con">
+          <p style="margin-bottom: 10px; font-size: 24px; text-align: center; margin-top: 25px; color: #44abf0; " >云创智鹰智慧工地后台管理系统</p>
           <div class="form-coment">
-            <login-form @on-success-valid="handleSubmit" ref="loginFormRef" style="margin-top: 16px; width: 250px"></login-form>
+            <login-form @on-success-valid="handleSubmit" ref="loginFormRef" style="margin-top: 16px; width: 300px"></login-form>
           </div>
           <div class="register">
             <div class="register-cut">
-              <span @click="checkIn" style="color: #eb6c27">工地入住</span>
+              <!-- <span @click="checkIn" style="color: #eb6c27">工地入住</span> -->
             </div>
           </div>
         </div>

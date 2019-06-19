@@ -73,7 +73,7 @@ export default [
     name: 'userManagement',
     meta: {
       access: ['yonghu_g'],
-      icon: '_gongren',
+      icon: '_iconyonghuguanli-copy',
       title: '用户管理'
     },
     component: Main,
@@ -83,7 +83,7 @@ export default [
         name: 'message',
         meta: {
           access: ['renyuanxinxi_g'],
-          icon: '_gongren',
+          icon: '_iconrenyuanxinxi',
           title: '人员信息'
         },
         component: () => import('@/view/userManagement/message.vue')
@@ -93,7 +93,7 @@ export default [
         name: 'adminJurisdiction',
         meta: {
           access: ['quanxianfenpei_g'],
-          icon: '_gongren',
+          icon: '_iconquanxian',
           title: '权限分配'
         },
         component: () => import('@/view/userManagement/jurisdiction/adminJurisdiction.vue')
@@ -103,7 +103,7 @@ export default [
         name: 'equipmentManagement',
         meta: {
           access: ['设备管理'],
-          icon: '_gongren',
+          icon: '_iconshebeiguanli',
           title: '设备管理'
         },
         component: () => import('@/view/userManagement/equipmentManagement/equipmentManagement.vue')
@@ -113,7 +113,7 @@ export default [
         name: 'compensation',
         meta: {
           access: ['工种管理'],
-          icon: '_leibieguanli',
+          icon: '_icongongziyufuli',
           title: '薪资管理'
         },
         component: () => import('@/view/userManagement/compensation.vue')
@@ -133,7 +133,7 @@ export default [
         name: 'IDaudit',
         meta: {
           access: ['账号审核'],
-          icon: '_gongren',
+          icon: '_iconshenhe',
           title: '账号审核'
         },
         component: () => import('@/view/userManagement/IDaudit/IDaudit.vue')
@@ -143,7 +143,7 @@ export default [
         name: 'slideshow',
         meta: {
           // access: ['轮播图'],
-          icon: '_gongren',
+          icon: '_iconlunbotu1',
           title: '轮播图管理'
         },
         component: () => import('@/view/userManagement/slideshow/slideshow.vue')
@@ -153,7 +153,7 @@ export default [
         name: 'lawsAndRegulations',
         meta: {
           // access: ['轮播图'],
-          icon: '_gongren',
+          icon: '_iconfalv',
           title: '法律法规管理'
         },
         component: () => import('@/view/userManagement/lawsAndRegulations/lawsAndRegulations.vue')
@@ -165,8 +165,8 @@ export default [
     name: 'zjjAdmin',
     meta: {
       access: ['住建局'],
-      icon: '_jianzhu',
-      title: '住建局管理'
+      icon: '_iconjianshexiang1',
+      title: '人社局管理'
     },
     component: Main,
     children: [
@@ -175,7 +175,7 @@ export default [
         name: 'constructionOrganization',
         meta: {
           access: ['施工单位管理住建局'],
-          icon: '_shigongdanwei',
+          icon: '_iconshigongxiangmu',
           title: '施工单位管理'
         },
         component: () => import('@/view/zjjAdmin/companyAdmin.vue')
@@ -185,7 +185,7 @@ export default [
         name: 'supervision',
         meta: {
           access: ['监督预警'],
-          icon: '_jiandukaohe',
+          icon: '_iconyujing',
           title: '监督预警'
         },
         component: () => import('@/view/zjjAdmin/supervision.vue')
@@ -195,7 +195,7 @@ export default [
         name: 'construction',
         meta: {
           access: ['建设项目管理'],
-          icon: '_jiandukaohe',
+          icon: '_icongongchengjianshe',
           title: '建设项目管理'
         },
         component: () => import('@/view/zjjAdmin/construction.vue')
@@ -205,7 +205,7 @@ export default [
         name: 'zjjAdminWorkerAdmin',
         meta: {
           access: ['提交工资单'],
-          icon: '_gongzibiaoshenhe',
+          icon: '_iconchakan',
           title: '查看工人'
         },
         component: () => import('@/view/zjjAdmin/workerAdmin.vue')
@@ -215,7 +215,7 @@ export default [
         name: 'userAdmin',
         meta: {
           access: ['住建局用户管理'],
-          icon: '_leibieguanli',
+          icon: '_iconyonghu',
           title: '用户管理'
         },
         component: () => import('@/view/zjjAdmin/userAdmin.vue')
@@ -247,7 +247,7 @@ export default [
     name: 'constructionOrganizationAdmin',
     meta: {
       access: ['施工单位管理'],
-      icon: '_shigongdanwei',
+      icon: '_iconshigongdanwei',
       title: '施工单位管理'
     },
     component: Main,
@@ -257,7 +257,7 @@ export default [
         name: 'projectAdmin',
         meta: {
           access: ['施工项目管理'],
-          icon: '_xiangmu',
+          icon: '_iconshigong',
           title: '施工项目管理'
         },
         component: () => import('@/view/constructionOrganizationAdmin/projectAdmin/projectAdmin.vue')
@@ -267,7 +267,7 @@ export default [
         name: 'workerAdmin',
         meta: {
           access: ['工人管理'],
-          icon: '_gongren',
+          icon: '_icongongren',
           title: '工人管理'
         },
         component: () => import('@/view/constructionOrganizationAdmin/workerAdmin/workerAdmin.vue')
@@ -276,7 +276,7 @@ export default [
         path: 'attendanceAdmin',
         name: 'attendanceAdmin',
         meta: {
-          access: ['提交工资单'],
+          access: ['考勤设置'],
           icon: '_gongzibiaoshenhe',
           title: '考勤设置'
         },
@@ -287,7 +287,7 @@ export default [
         name: 'positionAdmin',
         meta: {
           access: ['职位发布'],
-          icon: '_gongren',
+          icon: '_iconfabu',
           title: '职位发布'
         },
         component: () => import('@/view/constructionOrganizationAdmin/positionAdmin/positionAdmin.vue')
@@ -309,7 +309,7 @@ export default [
     name: 'bankAdminFather',
     meta: {
       access: ['银行管理'],
-      icon: '_yinhang',
+      icon: '_iconyinhang',
       title: '银行管理'
     },
     component: Main,
@@ -318,8 +318,8 @@ export default [
         path: 'bankAdmin',
         name: 'bankAdmin',
         meta: {
-          access: ['银行管理Node'],
-          icon: '_yinhang',
+          access: ['工资管理'],
+          icon: '_iconicon_gongzi',
           title: '工资管理'
         },
         component: () => import('@/view/bankAdmin/bankAdmin.vue')
@@ -339,7 +339,7 @@ export default [
         name: 'cashDeposit',
         meta: {
           access: ['资金审核'],
-          icon: '_yinhang',
+          icon: '_iconshenhe',
           title: '资金审核'
         },
         component: () => import('@/view/bankAdmin/guaranteeDeposit.vue')

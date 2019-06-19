@@ -17,9 +17,6 @@
         <menu-item v-else :name="getNameOrHref(item)" :key="`menu-${item.name}`" ref="menuItemRef">
           <common-icon :type="item.icon || ''"/>
           <span>{{ showTitle(item) }}</span>
-          <!--<div style="display: inline-block;" :class="[item.showSelect ? 'showSelect_Js' : '']" @click="clickTitle(index)">-->
-
-          <!--</div>-->
         </menu-item>
       </template>
     </template>
@@ -31,15 +28,9 @@
   export default {
     name: 'SideMenuItem',
     mixins: [ mixin, itemMixin ],
-    methods: {
-      clickTitle (index) {
-        // this.children.forEach(item => {
-        //   if (item.showSelect) item.showSelect = false
-        // })
-        // this.children[index].showSelect = true
-        // console.log(this.children, '*********************')
-        // 'showSelect_Js'
-        // this.$forceUpdate()
+    data () {
+      return {
+
       }
     }
   }

@@ -70,7 +70,7 @@
     },
     data () {
       return {
-        openedNames: []
+        openedNames: this.$store.state.user.parentNameList
       }
     },
     methods: {
