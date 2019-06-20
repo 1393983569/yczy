@@ -8,6 +8,15 @@
       <FormItem prop="corpName" label="企业名称"  style="width: 200px">
         <Input type="text" v-model="formInline.corpName" placeholder="企业名称"></Input>
       </FormItem>
+      <FormItem prop="areaCode" label="企业注册地区" style="width: 200px">
+        <siteSelect v-model="formInline.areaCode"></siteSelect>
+      </FormItem>
+      <FormItem prop="appId" label="AppId" style="width: 200px">
+        <Input type="text" v-model="formInline.appId" placeholder="AppId"></Input>
+      </FormItem>
+      <FormItem prop="secretKey" label="秘钥" style="width: 200px">
+        <Input type="text" v-model="formInline.secretKey" placeholder="秘钥"></Input>
+      </FormItem>
       <FormItem prop="corpType" label="单位性质" style="width: 200px">
         <Select v-model="formInline.corpType" style="width:200px">
           <Option v-for="item in constructionList" :value="item.id" :key="item.id">{{ item.name }}</Option>
@@ -15,9 +24,6 @@
       </FormItem>
       <FormItem prop="licenseNum" label="工商营业执照注册号" style="width: 200px">
         <Input type="text" v-model="formInline.licenseNum" placeholder="工商营业执照注册号"></Input>
-      </FormItem>
-      <FormItem prop="areaCode" label="企业注册地区" style="width: 200px">
-        <siteSelect v-model="formInline.areaCode"></siteSelect>
       </FormItem>
       <FormItem prop="zipCode" label="邮政编码" style="width: 200px">
         <Input type="text" v-model="formInline.zipCode" placeholder="邮政编码"></Input>
@@ -79,12 +85,6 @@
       </FormItem>
       <FormItem prop="address" label="企业营业地址" style="width: 200px">
         <Input type="text" v-model="formInline.address" placeholder="企业营业地址"></Input>
-      </FormItem>
-      <FormItem prop="appId" label="AppId" style="width: 200px">
-        <Input type="text" v-model="formInline.appId" placeholder="AppId"></Input>
-      </FormItem>
-      <FormItem prop="secretKey" label="秘钥" style="width: 200px">
-        <Input type="text" v-model="formInline.secretKey" placeholder="秘钥"></Input>
       </FormItem>
       <!--<FormItem prop="deptAddr" label="单位详细地址" style="width: 200px">-->
         <!--<Input type="text" v-model="formInline.deptAddr" placeholder="单位详细地址">-->

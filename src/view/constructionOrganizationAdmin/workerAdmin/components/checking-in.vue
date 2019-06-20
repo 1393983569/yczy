@@ -86,7 +86,7 @@ export default({
     // 得到页数
     getPageNum (e) {
       this.pageNum = e
-      this.getList()
+      this.getList(this.wId)
     },
     // 复位
     restoration () {

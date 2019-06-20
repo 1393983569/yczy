@@ -278,7 +278,7 @@ export default [
         name: 'attendanceAdmin',
         meta: {
           access: ['考勤设置'],
-          icon: '_gongzibiaoshenhe',
+          icon: '_iconkaoqin',
           title: '考勤设置'
         },
         component: () => import('@/view/constructionOrganizationAdmin/attendanceAdmin/attendanceAdmin.vue')

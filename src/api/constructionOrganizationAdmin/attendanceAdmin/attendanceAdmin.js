@@ -15,7 +15,7 @@ export const setAdd = (data) => {
 // 查询考勤设置
 export const getData = (pid) => {
   return axios.request({
-    url: `/set/find?pid=${pid}`,
+    url: `/set/find?accountId=${pid}`,
     method: 'get'
   })
 }
