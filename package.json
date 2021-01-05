@@ -12,7 +12,7 @@
     "pro": "node --max_old_space_size=4096 build/build.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "clipboard": "^2.0.0",
     "cropperjs": "^1.3.5",
     "crypto-js": "^3.1.9-1",
